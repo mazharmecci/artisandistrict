@@ -39,6 +39,13 @@
     @keyframes fadeIn { from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);} }
     footer { text-align:center; padding:32px; color:var(--muted); font-size:14px; }
     @media(max-width:600px){ .modal-box{height:100%; border-radius:0; padding:24px;} }
+
+    /* Highlight current month */
+    .highlight {
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 20px rgba(201,162,77,0.6);
+      transform: scale(1.02);
+    }
   </style>
 </head>
 <body>
@@ -92,7 +99,6 @@
 <footer>
   © 2026 Artisan District · Doha, Qatar
 </footer>
-
 <script>
   const modal = document.getElementById('modal');
   const modalTitle = document.getElementById('modalTitle');
@@ -136,12 +142,23 @@
     });
   });
 
-  // Default: show all months on page load
+  // Default: show all months and highlight + scroll current month
   window.addEventListener('DOMContentLoaded', () => {
     tagFilter.value = 'all';
     document.querySelectorAll('.month-card').forEach(card => {
       card.style.display = 'block';
     });
+
+    // Highlight current month
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const now = new Date();
+    const currentMonth = monthNames[now.getMonth()];
+    const currentCard = document.querySelector(`.month-card[data-month="${currentMonth}"]`);
+    if (currentCard) {
+      currentCard.classList.add('highlight');
+      // Smooth scroll into view
+      currentCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   });
 </script>
 </body>
