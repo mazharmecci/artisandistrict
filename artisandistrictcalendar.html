@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artisan District – 2026 Content Calendar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #1c1c1c;
+      --accent: #c9a24d;
+      --bg: #f8f8f6;
+      --card: #ffffff;
+      --muted: #6f6f6f;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--primary);
+    }
+
+    header {
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 16px;
+    }
+
+    .calendar {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .month-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .month-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.08);
+    }
+
+    .month-image {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .month-content {
+      padding: 22px;
+    }
+
+    .month-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin: 0 0 8px;
+    }
+
+    .month-content p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 12px;
+      background: rgba(201,162,77,0.12);
+      color: var(--accent);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 999;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #fff;
+      max-width: 720px;
+      width: 100%;
+      border-radius: var(--radius);
+      padding: 32px;
+      animation: fadeIn .3s ease;
+    }
+
+    .modal-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .modal-box ul {
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .modal-box li {
+      margin-bottom: 8px;
+    }
+
+    .close-btn {
+      margin-top: 24px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Artisan District – 2026 Content Calendar</h1>
+  <p>A premium, brand-led content planning system designed for hospitality excellence in Doha, Qatar.</p>
+</header>
+
+<section class="calendar">
+
+  <div class="month-card" data-month="January" data-items="Brand Vision|Central Kitchen Overview|Certifications">
+    <div class="month-image" style="background-image:url('artisandistrict/images/january.jpg')"></div>
+    <div class="month-content">
+      <h2>January</h2>
+      <p>Brand authority, vision, and systems</p>
+      <span class="tag">Brand & Strategy</span>
+    </div>
+  </div>
+
+  <div class="month-card" data-month="February" data-items="Artisan Bakery|Baking Process|Luxury Desserts">
+    <div class="month-image" style="background-image:url('artisandistrict/images/february.jpg')"></div>
+    <div class="month-content">
+      <h2>February</h2>
+      <p>Craftsmanship and fresh bakery stories</p>
+      <span class="tag">Artisan Bakery</span>
+    </div>
+  </div>
+
+  <div class="month-card" data-month="March" data-items="Industrial Catering|Staff Canteens|Meal Planning">
+    <div class="month-image" style="background-image:url('artisandistrict/images/march.jpg')"></div>
+    <div class="month-content">
+      <h2>March</h2>
+      <p>Large-scale catering excellence</p>
+      <span class="tag">Industrial Catering</span>
+    </div>
+  </div>
+
+  <div class="month-card" data-month="April" data-items="Ramadan Catering|Iftar Preparation|Community Outreach">
+    <div class="month-image" style="background-image:url('artisandistrict/images/april.jpg')"></div>
+    <div class="month-content">
+      <h2>April</h2>
+      <p>Ramadan traditions and community-focused catering</p>
+      <span class="tag">Ramadan & Community</span>
+    </div>
+  </div>
+
+  <div class="month-card" data-month="May" data-items="Sustainability Practices|Waste Reduction|Eco Packaging">
+    <div class="month-image" style="background-image:url('artisandistrict/images/may.jpg')"></div>
+    <div class="month-content">
+      <h2>May</h2>
+      <p>Sustainability and responsible operations</p>
+      <span class="tag">Sustainability</span>
+    </div>
+  </div>
+
+  <div class="month-card" data-month="June" data-items="Luxury Banqueting|Event Execution|Premium Plating">
+    <div class="month-image" style="background-image:url('artisandistrict/images/june.jpg')"></div>
+    <div class="month-content">
+      <h2>June</h2>
+      <p>High-end banqueting and elite events</p>
+      <span class="tag">Luxury Events</span>
+    </div>
+  </div>
+
+  <div class="month-card" data-month="July" data-items="Chef Spotlights|Team Culture|Training & Hygiene">
+    <div class="month-image" style="background-image:url('artisandistrict/images/july.jpg')"></div>
+    <div class="month-content">
+      <h2>July</h2>
+      <p>The people and culture behind the brand</p>
+      <span class="tag">Our Team</span>
+    </div>
+  </div>
+
+  <div class="month-card" data-month="August" data-items="HACCP Systems|Quality Audits|Food Safety Excellence">
+    <div class="month-image" style="background-image:url('artisandistrict/images/august.jpg')"></div>
+    <div class="month-content">
+      <h2>August</h2>
+      <p>Food safety, hygiene, and compliance</p>
+      <span class="tag">Compliance</span>
+    </div>
+  </div>
+
+  <div class="month-card" data-month="September" data-items="Canteen Development|Workflow Design|Meal Planning">
+    <div class="month-image" style="background-image:url('artisandistrict/images/september.jpg')"></div>
+    <div class="month-content">
+      <h2>September</h2>
+      <p>End-to-end canteen solutions</p>
+      <span class="tag">Canteen Management</span>
+    </div>
+  </div>
+
+  <div class="month-card" data-month="October" data-items="Client Partnerships|Corporate Trust|Sector Solutions">
+    <div class="month-image" style="background-image:url('artisandistrict/images/october.jpg')"></div>
+    <div class="month-content">
+      <h2>October</h2>
+      <p>Partnerships across Qatar</p>
+      <span class="tag">Partnerships</span>
+    </div>
+  </div>
+
+  <div class="month-card" data-month="November" data-items="Innovation|Kitchen Automation|Future Systems">
+    <div class="month-image" style="background-image:url('artisandistrict/images/november.jpg')"></div>
+    <div class="month-content">
+      <h2>November</h2>
+      <p>Innovation and future-ready food systems</p>
+      <span class="tag">Innovation</span>
+    </div>
+  </div>
+
+  <div class="month-card" data-month="December" data-items="Year in Review|Team Recognition|Vision 2027">
+    <div class="month-image" style="background-image:url('artisandistrict/images/december.jpg')"></div>
+    <div class="month-content">
+      <h2>December</h2>
+      <p>Achievements, gratitude, and future vision</p>
+      <span class="tag">Year in Review</span>
+    </div>
+  </div>
+
+</section>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h3 id="modalTitle"></h3>
+    <ul id="modalList"></ul>
+    <button class="close-btn" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<footer>
+  © 2026 Artisan District · Doha, Qatar
+</footer>
+
+<script>
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalList = document.getElementById('modalList');
+
+  document.querySelectorAll('.month-card').forEach(card => {
+    card.addEventListener('click', () => {
+      modalTitle.textContent = card.dataset.month + ' Content Focus';
+      modalList.innerHTML = '';
+      card.dataset.items.split('|').forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        modalList.appendChild(li);
+      });
+      modal.classList.add('active');
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove('active');
+  }
+</script>
+
+</body>
+</html>
