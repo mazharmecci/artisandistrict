@@ -1,4 +1,4 @@
-/* Core palette (Qatar flag) */
+/* Core palette */
 :root {
   --qatar-maroon: rgb(141, 23, 55);
   --qatar-white: rgb(240, 240, 240);
@@ -9,18 +9,8 @@
   --shadow: 0 8px 22px rgba(0,0,0,0.08);
 }
 
-.calendar {
-  max-width: 1280px;          /* was 1100px */
-}
-
-.months-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));  /* was 260px */
-  gap: 24px;                  /* a bit more gap */
-}
-
-
 * { box-sizing: border-box; }
+
 html, body {
   margin: 0;
   padding: 0;
@@ -37,6 +27,7 @@ html, body {
 .site-header h1 {
   margin: 0 0 10px;
   font-weight: 700;
+  font-size: 32px;
 }
 .site-header p {
   margin: 0;
@@ -50,17 +41,10 @@ html, body {
   padding: 0 16px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 14px;
-  color: var(--text-muted);
+  justify-content: center;
 }
-
-.filter-bar label {
-  font-weight: 500;
-}
-
 .filter-bar select {
-  padding: 6px 12px;
+  padding: 10px 16px;
   border-radius: 999px;
   border: 1px solid var(--border);
   font-size: 14px;
@@ -76,17 +60,17 @@ html, body {
 
 /* Grid layout */
 .calendar {
-  max-width: 1280;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 10px 16px 40px;
 }
 .months-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
 }
 
-/* Month card: image on top, Qatar gradient band + CTA below */
+/* Month card */
 .month-card {
   position: relative;
   border-radius: 14px;
@@ -101,7 +85,7 @@ html, body {
   box-shadow: 0 10px 26px rgba(0,0,0,0.12);
 }
 
-/* Top visible month image (Jan.PNG, Feb.PNG...) */
+/* Top hero image */
 .month-image {
   width: 100%;
   height: 170px;
@@ -109,7 +93,7 @@ html, body {
   background-position: center;
 }
 
-/* Gradient Qatar band under image with text + CTA */
+/* Gradient band */
 .month-inner {
   position: relative;
   padding: 14px 14px 16px;
@@ -123,7 +107,7 @@ html, body {
   bottom: -10px;
   width: 120px;
   height: 90px;
-  background-image: url('./images/qatar.jpg');
+  background-image: url('./images/qatar.jpg'); /* ensure this file exists */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -171,7 +155,7 @@ html, body {
   font-size: 13px;
 }
 
-/* CTA directly under the band */
+/* CTA */
 .month-cta {
   margin-top: 12px;
   display: inline-flex;
@@ -194,6 +178,69 @@ html, body {
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
   background: rgba(255,255,255,0.26);
+}
+
+/* Thumbnail strip (3 circles) */
+.month-thumbs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 12px;
+}
+
+/* Circle without border */
+.month-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f4f4f4;
+  flex-shrink: 0;
+}
+.month-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Desktop: make card 2‑column, vertical circles on right */
+@media (min-width: 768px) {
+  .month-card {
+    display: grid;
+    grid-template-columns: 3fr auto;
+    column-gap: 16px;
+    align-items: center;
+  }
+
+  .month-image {
+    grid-column: 1 / 2;
+  }
+
+  .month-inner {
+    grid-column: 1 / 2;
+  }
+
+  .month-thumbs {
+    grid-column: 2 / 3;
+    grid-row: 1 / span 2;
+    flex-direction: column;
+    padding: 0 12px 0 0;
+    justify-content: center;
+  }
+}
+
+/* Mobile: circles below CTA, horizontal */
+@media (max-width: 767px) {
+  .month-card {
+    display: block;
+  }
+
+  .month-thumbs {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 8px 16px 16px;
+  }
 }
 
 /* Modal */
@@ -401,80 +448,3 @@ html, body {
   padding: 20px 16px 30px;
   color: var(--text-muted);
 }
-
-.month-thumbs {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 12px 2px;
-}
-
-/* Circle without border */
-.month-thumb {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: #f4f4f4;
-  flex-shrink: 0;
-}
-.month-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Desktop: vertical on the right */
-@media (min-width: 768px) {
-  .month-card {
-    display: grid;
-    grid-template-columns: 3fr auto;
-    column-gap: 16px;
-    align-items: center;
-  }
-
-  .month-image {
-    grid-column: 1 / 2;
-  }
-
-  .month-thumbs {
-    grid-column: 2 / 3;
-    grid-row: 1 / span 2;
-    flex-direction: column;
-    padding: 0 12px 0 0;
-    justify-content: center;
-  }
-
-  .month-inner {
-    grid-column: 1 / 2;
-  }
-}
-
-/* Mobile: thumbnails below CTA, horizontal */
-@media (max-width: 767px) {
-  .month-card {
-    display: block;
-  }
-
-  .month-thumbs {
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 8px 16px 12px;
-  }
-
-  /* Move thumbs under CTA: ensure markup order is
-     image -> inner (with button) -> thumbs,
-     or adjust with margin-top here if you keep thumbs below inner */
-}
-
-@media (max-width: 767px) {
-  .month-thumbs {
-    order: 3;
-  }
-  .month-inner {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
