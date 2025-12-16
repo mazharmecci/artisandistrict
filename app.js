@@ -88,9 +88,9 @@ const months = [
     images: [
       "images/apr-pearl.jpg",
       "images/apr-villaggio.jpg",
-      "images/apr-alhazm.jpg",
-      "images/apr-pearldome.jpg",
-      "images/apr-Imam-Abdul-Wahhab-mosque.jpg"
+      "images/apr-Al-Hazm-Mall.jpg",
+      "images/apr-pearl-II.jpg",
+      "images/apr-Al-Hazm-Mall-II.jpg"
     ],
     holidays: [
       { dateISO: "2026-04-13", label: "Eid al-Fitr — tentative" }
