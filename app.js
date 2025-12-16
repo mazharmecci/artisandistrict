@@ -53,7 +53,7 @@ const months = [
     label: "March",
     theme: "Ramadan activation",
     subtitle: "Ramadan activation and community focus",
-    cardImage: "images/Mar.PNG",
+    cardImage: "images/cutlery.png",
     marqueeAr: "منطقة الحرفيين: خلال شهر رمضان، نرتقي بتقليد إفطار الصائم من خلال قوائم منتقاة بعناية تكرم التراث وتحتفل بالمجتمع. كل وجبة تحكي قصة من العناية والتواصل",
     marquee: "Artisan District: Artisan District: During Ramadan, we elevate the tradition of breaking fast with thoughtfully curated menus that honor heritage while celebrating community. Every meal tells a story of care and connection.",
     spots: [
