@@ -1,6 +1,6 @@
 /* Month data:
    - cardImage: hero on landing grid (Jan.PNG etc.)
-   - images: actual carousel assets (you map these to the suggested spots)
+   - images: actual carousel assets (mapped to the suggested spots)
    - spots: tourist spots + how they tie to the theme
    - holidays: key dates and observances
 */
@@ -270,10 +270,14 @@ const months = [
   }
 ];
 
-/* Build landing grid with top image + gradient band + CTA (as in previous file) */
+/* Build landing grid with top image + gradient band + CTA */
 const gridEl = document.getElementById('monthsGrid');
 gridEl.innerHTML = months.map(m => `
-  <article class="month-card" data-month="${m.key}" tabindex="0" aria-label="${m.label}">
+  <article class="month-card"
+           data-month="${m.key}"
+           data-theme="${m.theme}"
+           tabindex="0"
+           aria-label="${m.label}">
     <div class="month-image" style="background-image:url('${m.cardImage}')"></div>
     <div class="month-inner">
       <header class="month-header">
@@ -291,183 +295,3 @@ gridEl.innerHTML = months.map(m => `
     </div>
   </article>
 `).join('');
-
-/* Modal + carousel logic: reuse your existing implementation, with captions tied to spots where possible */
-
-const modalEl = document.getElementById('monthModal');
-const modalTitleEl = document.getElementById('modalTitle');
-const modalSubtitleEl = document.getElementById('modalSubtitle');
-const holidayBadgesEl = document.getElementById('holidayBadges');
-const spotsListEl = document.getElementById('spotsList');
-const carouselEl = document.getElementById('carousel');
-const dotsEl = document.getElementById('carouselDots');
-const prevBtn = document.querySelector('.carousel-btn.prev');
-const nextBtn = document.querySelector('.carousel-btn.next');
-
-function openModal(monthKey) {
-  const month = months.find(m => m.key === monthKey);
-  if (!month) return;
-
-  modalTitleEl.textContent = month.label;
-  modalSubtitleEl.textContent = month.subtitle;
-
-  // Holidays
-  if (month.holidays && month.holidays.length) {
-    holidayBadgesEl.innerHTML = month.holidays.map(h => `
-      <span class="holiday-badge">
-        <span class="holiday-date">${formatDate(h.dateISO)}</span>
-        <span class="holiday-label">${h.label}</span>
-      </span>
-    `).join('');
-  } else {
-    holidayBadgesEl.innerHTML =
-      `<span class="holiday-badge"><span class="holiday-label">No highlighted days added yet</span></span>`;
-  }
-
-  // Tourist spots list
-  if (month.spots && month.spots.length) {
-    spotsListEl.innerHTML = month.spots.map(s => `
-      <div class="spot-pill">
-        <div class="spot-icon">📍</div>
-        <div>
-          <div class="spot-name">${s.name}</div>
-          <div class="spot-note">${s.note}</div>
-        </div>
-      </div>
-    `).join('');
-  } else {
-    spotsListEl.innerHTML =
-      `<div class="spot-pill"><div class="spot-icon">📍</div><div class="spot-name">Add Doha highlights here</div></div>`;
-  }
-
-  // Carousel items; map first N images to spot names if available
-  const imgs = (month.images || []).slice(0, 6);
-  const captions = imgs.map((_, idx) => {
-    const spot = month.spots && month.spots[idx] ? month.spots[idx].name : null;
-    return spot ? `${spot} — ${month.theme.toLowerCase()}` : `${month.label} — visual highlight ${idx + 1}`;
-  });
-
-  carouselEl.innerHTML = imgs.map((src, i) => `
-    <figure class="carousel-item" data-index="${i}">
-      <img src="${src}" alt="${captions[i]}">
-      <figcaption class="caption">${captions[i]}</figcaption>
-    </figure>
-  `).join('');
-
-  // Dots
-  dotsEl.innerHTML = imgs.map((_, i) =>
-    `<button class="dot${i===0?' active':''}" data-dot="${i}" aria-label="Go to slide ${i+1}"></button>`
-  ).join('');
-
-  requestAnimationFrame(() => {
-    carouselEl.scrollTo({ left: 0, behavior: 'instant' });
-  });
-
-  modalEl.setAttribute('aria-hidden', 'false');
-}
-
-function closeModal() {
-  modalEl.setAttribute('aria-hidden', 'true');
-}
-
-/* Date helper */
-function formatDate(iso) {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return iso;
-  const opts = { year: 'numeric', month: 'short', day: 'numeric' };
-  return d.toLocaleDateString(undefined, opts);
-}
-
-/* Open / close events */
-document.addEventListener('click', (e) => {
-  const openKey = e.target.closest('[data-open]')?.getAttribute('data-open');
-  if (openKey) openModal(openKey);
-
-  if (e.target.closest('[data-close]') || e.target.dataset.close === 'true') {
-    closeModal();
-  }
-});
-
-document.addEventListener('keydown', (e) => {
-  if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.month-card')) {
-    const mk = e.target.closest('.month-card').getAttribute('data-month');
-    e.preventDefault();
-    openModal(mk);
-  }
-  if (e.key === 'Escape') closeModal();
-});
-
-/* Carousel controls */
-prevBtn.addEventListener('click', () => snapTo('prev'));
-nextBtn.addEventListener('click', () => snapTo('next'));
-
-dotsEl.addEventListener('click', (e) => {
-  const dot = e.target.closest('[data-dot]');
-  if (!dot) return;
-  const index = parseInt(dot.getAttribute('data-dot'), 10);
-  const targetItem = carouselEl.querySelector(`.carousel-item[data-index="${index}"]`);
-  if (targetItem) targetItem.scrollIntoView({ behavior: 'smooth', inline: 'start' });
-});
-
-/* Sync dots */
-let dotSyncRaf = null;
-carouselEl.addEventListener('scroll', () => {
-  if (dotSyncRaf) return;
-  dotSyncRaf = requestAnimationFrame(() => {
-    const items = [...carouselEl.querySelectorAll('.carousel-item')];
-    const parentRect = carouselEl.getBoundingClientRect();
-    let bestIndex = 0;
-    let bestCoverage = -Infinity;
-
-    items.forEach((item, idx) => {
-      const rect = item.getBoundingClientRect();
-      const leftVisible = Math.max(rect.left, parentRect.left);
-      const rightVisible = Math.min(rect.right, parentRect.right);
-      const coverage = Math.max(0, rightVisible - leftVisible);
-      if (coverage > bestCoverage) {
-        bestCoverage = coverage;
-        bestIndex = idx;
-      }
-    });
-
-    [...dotsEl.children].forEach((d, i) => d.classList.toggle('active', i === bestIndex));
-    dotSyncRaf = null;
-  });
-});
-
-/* Snap nav */
-function snapTo(direction) {
-  const items = [...carouselEl.querySelectorAll('.carousel-item')];
-  if (!items.length) return;
-  const parentRect = carouselEl.getBoundingClientRect();
-
-  let currIndex = 0;
-  let bestCoverage = -Infinity;
-  items.forEach((item, idx) => {
-    const rect = item.getBoundingClientRect();
-    const leftVisible = Math.max(rect.left, parentRect.left);
-    const rightVisible = Math.min(rect.right, parentRect.right);
-    const coverage = Math.max(0, rightVisible - leftVisible);
-    if (coverage > bestCoverage) {
-      bestCoverage = coverage;
-      currIndex = idx;
-    }
-  });
-
-  const targetIndex = Math.max(
-    0,
-    Math.min(items.length - 1, direction === 'next' ? currIndex + 1 : currIndex - 1)
-  );
-  items[targetIndex].scrollIntoView({ behavior: 'smooth', inline: 'start' });
-}
-
-/* Focus guard */
-document.addEventListener('focusin', (e) => {
-  if (modalEl.getAttribute('aria-hidden') === 'true') return;
-  if (!modalEl.contains(e.target)) {
-    const focusable = modalEl.querySelector(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-    (focusable || modalEl).focus();
-  }
-});
