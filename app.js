@@ -295,3 +295,23 @@ gridEl.innerHTML = months.map(m => `
     </div>
   </article>
 `).join('');
+
+/* Filter by theme: show/hide cards based on data-theme */
+const themeFilter = document.getElementById('themeFilter');
+
+if (themeFilter) {
+  themeFilter.addEventListener('change', () => {
+    const value = themeFilter.value; // "all" or a theme label
+    const cards = document.querySelectorAll('.month-card');
+
+    cards.forEach(card => {
+      const theme = card.getAttribute('data-theme');
+      if (value === 'all' || theme === value) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+}
+
