@@ -59,14 +59,15 @@ const months = [
     spots: [
       { name: "Souq Waqif", note: "Community heart of Doha, ideal for night‑time Ramadan stories." },
       { name: "Katara Cultural Village", note: "Blends culture, faith and gathering spaces in one frame." },
+      { name: "Fanar Mosque", note: "Blends culture, faith and gathering spaces in one frame." },
       { name: "Imam Muhammad ibn Abd al-Wahhab Mosque", note: "Spiritual anchor for devotional storytelling." }
     ],
     images: [
       "images/mar-souq-waqif.jpg",
       "images/mar-katara.jpg",
       "images/mar-Fanar.jpg",
-      "images/mar-market.jpg",
-      "images/mar-Aspire-Zone-Foundation.jpg"
+      "images/mar-Abn-al-wahhab-mosque.jpg",
+      "images/mar-Abn-al-wahhab-mosque-II.jpg"
     ],
     holidays: [
       { dateISO: "2026-03-17", label: "Ramadan (start) — tentative" }
