@@ -307,8 +307,10 @@ gridEl.innerHTML = months.map(m => {
       <div class="month-divider"></div>
 
       <div class="month-marquee">
-        <div class="marquee-text">${m.marquee}</div>
+        ${m.marqueeAr ? `<div class="marquee-text marquee-ar">${m.marqueeAr}</div>` : ''}
+        <div class="marquee-text marquee-en">${m.marquee}</div>
       </div>
+
     </article>
   `;
 }).join('');
