@@ -272,32 +272,45 @@ const months = [
 /* Build landing grid with top image + gradient band + CTA */
 const gridEl = document.getElementById('monthsGrid');
 
-gridEl.innerHTML = months.map(m => `
-  <article class="month-card"
-           data-month="${m.key}"
-           data-theme="${m.theme}"
-           tabindex="0"
-           aria-label="${m.label}">
-    <div class="month-image" style="background-image:url('${m.cardImage}')"></div>
-    <div class="month-inner">
-      <header class="month-header">
-        <div class="month-left">
-          <span class="month-flag" aria-hidden="true"></span>
-          <span class="month-name">${m.label}</span>
-        </div>
-        <span class="month-theme-tag">${m.theme}</span>
-      </header>
-      <div class="month-subtitle">${m.subtitle}</div>
-      <button class="month-cta"
-              type="button"
-              data-open="${m.key}"
-              aria-label="Open ${m.label} playbook">
-        <span class="icon">⟶</span>
-        <span>Open month playbook</span>
-      </button>
-    </div>
-  </article>
-`).join('');
+gridEl.innerHTML = months.map(m => {
+  const thumbs = (m.images || []).slice(0, 3); // first 3 for previews
+  return `
+    <article class="month-card"
+             data-month="${m.key}"
+             data-theme="${m.theme}"
+             tabindex="0"
+             aria-label="${m.label}">
+      <div class="month-image" style="background-image:url('${m.cardImage}')"></div>
+
+      <!-- Desktop: vertical row of 3 circles; Mobile: horizontal row -->
+      <div class="month-thumbs">
+        ${thumbs.map((src, i) => `
+          <div class="month-thumb">
+            <img src="${src}" alt="${m.label} preview ${i + 1}">
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="month-inner">
+        <header class="month-header">
+          <div class="month-left">
+            <span class="month-flag" aria-hidden="true"></span>
+            <span class="month-name">${m.label}</span>
+          </div>
+          <span class="month-theme-tag">${m.theme}</span>
+        </header>
+        <div class="month-subtitle">${m.subtitle}</div>
+        <button class="month-cta"
+                type="button"
+                data-open="${m.key}"
+                aria-label="Open ${m.label} playbook">
+          <span class="icon">⟶</span>
+          <span>Open month playbook</span>
+        </button>
+      </div>
+    </article>
+  `;
+}).join('');
 
 /* Filter by theme: show/hide cards based on data-theme */
 const themeFilter = document.getElementById('themeFilter');
