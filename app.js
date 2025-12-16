@@ -66,7 +66,7 @@ const months = [
       "images/mar-souq-waqif.jpg",
       "images/mar-katara.jpg",
       "images/mar-Fanar.jpg",
-      "images/mar-inlandsea.jpg",
+      "images/mar-market.jpg",
       "images/mar-Aspire-Zone-Foundation.jpg",
       "images/mar-Al-Shahaniya-camel-racetrack.jpg"
     ],
@@ -240,8 +240,8 @@ const months = [
       "images/nov-qncc.jpg",
       "images/nov-govt.jpg",
       "images/nov-qu.jpg",
-      "images/nov-compliance1.jpg",
-      "images/nov-compliance2.jpg",
+      "images/nov-iconiclandmark.jpg",
+      "images/nov-dohadistrict.jpg",
       "images/nov-compliance3.jpg"
     ],
     holidays: []
@@ -258,12 +258,12 @@ const months = [
       { name: "West Bay skyline", note: "Night‑time cityscape for year‑end recap and next‑year vision." }
     ],
     images: [
-      "images/dec-fireworks.jpg",
+      "images/dec-aquapark.jpg",
       "images/dec-lusail-marina.jpg",
       "images/dec-westbay.jpg",
-      "images/dec-review1.jpg",
-      "images/dec-review2.jpg",
-      "images/dec-review3.jpg"
+      "images/dec-Retaj-Salwa-Resort-Spa.jpg",
+      "images/dec-banana-island.jpg",
+      "images/dec-boating.jpg"
     ],
     holidays: []
   }
