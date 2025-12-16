@@ -1,13 +1,13 @@
 /* Month data with marquee statements */
 const months = [
-{
-  key: "january",
-  label: "January",
-  theme: "Brand & vision",
-  subtitle: "Brand authority, vision and systems",
-  cardImage: "images/Jan.PNG",
-  marqueeAr: "حي الحرفيين: في حي الحرفيين، رحلتنا متجذرة في اعتقاد بسيط لكنه قوي: الطعام الجيد يجمع الناس معاً. بدءاً من مخبزنا الحرفي الذي يملأ الصباح برائحة المخبوزات الطازجة، وصولاً إلى عمليات المطبخ الشاملة التي تقدم خدمات التموين الصناعي ومقاصف الموظفين، نحن ملتزمون بالتميز في كل تفصيلة.",
-  marquee: "Artisan District: At Artisan District, our journey is rooted in a simple yet powerful belief: good food brings people together. From our artisan bakery that awakens mornings with the aroma of freshly baked goods to our full-scale kitchen operations serving industrial catering and staff canteens, we are committed to excellence in every detail.",
+  {
+    key: "january",
+    label: "January",
+    theme: "Brand & vision",
+    subtitle: "Brand authority, vision and systems",
+    cardImage: "images/Jan.PNG",
+    marqueeAr: "حي الحرفيين: في حي الحرفيين، رحلتنا متجذرة في اعتقاد بسيط لكنه قوي: الطعام الجيد يجمع الناس معاً. بدءاً من مخبزنا الحرفي الذي يملأ الصباح برائحة المخبوزات الطازجة، وصولاً إلى عمليات المطبخ الشاملة التي تقدم خدمات التموين الصناعي ومقاصف الموظفين، نحن ملتزمون بالتميز في كل تفصيلة.",
+    marquee: "Artisan District: At Artisan District, our journey is rooted in a simple yet powerful belief: good food brings people together. From our artisan bakery that awakens mornings with the aroma of freshly baked goods to our full-scale kitchen operations serving industrial catering and staff canteens, we are committed to excellence in every detail.",
     spots: [
       { name: "Museum of Islamic Art", note: "Architectural icon that mirrors precision and timeless design." },
       { name: "Doha Skyline", note: "Panoramic city view that suggests ambition and forward vision." },
@@ -39,9 +39,9 @@ const months = [
     images: [
       "images/feb-Baladna-Farm-Park.jpg",
       "images/feb-Baladna-Farm-Park2.jpg",
-      "images/feb-Baladna-Farm-Par3.jpg"
+      "images/feb-Baladna-Farm-Park3.jpg",
       "images/feb-Sheikh-Abdulla-Bin-Zaid-AlMahmoud.jpg",
-      "images/feb-aspire-park.jpg",      
+      "images/feb-aspire-park.jpg"
     ],
     holidays: [
       { dateISO: "2026-02-10", label: "National Sports Day (Qatar)" }
