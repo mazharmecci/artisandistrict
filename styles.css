@@ -44,41 +44,49 @@ html, body {
   gap: 18px;
 }
 
-/* Month card with Qatar flag gradient + watermark */
+/* Month card: image on top, Qatar gradient band + button below */
 .month-card {
   position: relative;
-  background: linear-gradient(90deg, var(--qatar-maroon) 0%, var(--qatar-white) 100%);
   border-radius: 14px;
   overflow: hidden;
   box-shadow: var(--shadow);
+  background: #fff;
   cursor: pointer;
   transition: transform 150ms ease, box-shadow 150ms ease;
-}
-.month-card::after {
-  content: "";
-  position: absolute;
-  right: -20px;
-  bottom: -10px;
-  width: 160px;
-  height: 120px;
-  background-image: url('images/qatar.jpeg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  opacity: 0.12; /* subtle watermark */
-  pointer-events: none;
 }
 .month-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 26px rgba(0,0,0,0.12);
 }
 
-/* Foreground container to keep text readable on gradient */
+/* Top visible month image (Jan.PNG, Feb.PNG...) */
+.month-image {
+  width: 100%;
+  height: 170px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Gradient Qatar band under image with text + CTA */
 .month-inner {
-  background: linear-gradient(90deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 100%);
-  padding: 16px 16px 18px;
-  min-height: 140px;
+  position: relative;
+  padding: 14px 14px 16px;
+  background: linear-gradient(90deg, var(--qatar-maroon) 0%, var(--qatar-white) 100%);
   color: #fff;
+}
+.month-inner::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  bottom: -10px;
+  width: 120px;
+  height: 90px;
+  background-image: url('images/qatar.jpeg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  opacity: 0.14;
+  pointer-events: none;
 }
 
 .month-header {
@@ -100,9 +108,9 @@ html, body {
   box-shadow: 0 0 0 1px rgba(255,255,255,0.6) inset;
 }
 .month-name {
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 700;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.3px;
 }
 .month-theme-tag {
   font-size: 11px;
@@ -118,24 +126,24 @@ html, body {
 .month-subtitle {
   margin-top: 6px;
   color: #f4f4f4;
-  font-size: 14px;
+  font-size: 13px;
 }
 
-/* CTA */
+/* CTA directly under the band (inside same card) */
 .month-cta {
-  margin-top: 14px;
+  margin-top: 12px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.18);
   color: #fff;
-  border: 1px solid rgba(255,255,255,0.25);
-  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 7px 12px;
   border-radius: 10px;
   backdrop-filter: blur(1px);
   cursor: pointer;
   transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
-  font-size: 13px;
+  font-size: 12px;
 }
 .month-cta span.icon {
   font-size: 14px;
@@ -143,8 +151,10 @@ html, body {
 .month-cta:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  background: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.26);
 }
+
+/* Modal, holidays, spots, carousel, footer: unchanged from previous answer */
 
 /* Modal */
 .modal { position: fixed; inset: 0; display: none; }
