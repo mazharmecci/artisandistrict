@@ -39,7 +39,7 @@ const months = [
     ],
     images: [
       "images/feb-Baladna-Farm-Park.jpg",
-      "images/feb-Baladna-Farm-Park2.jpg",
+      "images/feb-Baladna-Farm-Park2.jpeg",
       "images/feb-Baladna-Farm-Park3.jpg",
       "images/feb-Sheikh-Abdulla-Bin-Zaid-AlMahmoud.jpg",
       "images/feb-aspire-park.jpg"
