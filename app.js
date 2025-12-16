@@ -33,10 +33,8 @@ const months = [
     marqueeAr: "نحن نهيئ القلوب والعقول لشهر رمضان، ونحتفل بروح المجتمع والصحة والتفوق الرياضي. مطابخنا جاهزة لتغذية الأجساد والروح خلال هذا الشهر الكريم",
     marquee: "Artisan District: Preparing hearts and minds for Ramadan, we celebrate the spirit of community, wellness, and athletic excellence. Our kitchens stand ready to nourish bodies and souls during this sacred month.",
     spots: [
-      { name: "Baladna Park", note: "Baladna Park is a family-friendly & natural destination in Qatar." },
-      { name: "Baladna Farm", note: "This unique and spectacular park offers fun activities & beautiful green spaces." },
-      { name: "Baladna Park", note: "The park offers a variety of attractions." },
-      { name: "Baladna Park", note: "The park that offers more exiting experience." },
+      { name: "Baladna Park", note: "Baladna Park is a family-friendly & natural destination in Qatar." },      
+      { name: "Baladna Park", note: "The park offers a variety of attractions." },     
       { name: "Aspire Park", note: "The Aspire park is popular spot for joggers - 1.6km track." }
     ],
     images: [
@@ -61,9 +59,7 @@ const months = [
     spots: [
       { name: "Souq Waqif", note: "Community heart of Doha, ideal for night‑time Ramadan stories." },
       { name: "Katara Cultural Village", note: "Blends culture, faith and gathering spaces in one frame." },
-      { name: "Fanar Mosque", note: "Blends culture, faith and gathering spaces in one frame." },
-      { name: "Imam Muhammad ibn Abd al-Wahhab Mosque", note: "Spiritual anchor for devotional storytelling - day time." },
-      { name: "Imam Muhammad ibn Abd al-Wahhab Mosque", note: "Spiritual anchor for devotional storytelling - night time." }
+      { name: "Fanar Mosque", note: "Blends culture, faith and gathering spaces in one frame." }      
     ],
     images: [
       "images/mar-souq-waqif.jpg",
