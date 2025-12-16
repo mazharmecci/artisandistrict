@@ -9,6 +9,17 @@
   --shadow: 0 8px 22px rgba(0,0,0,0.08);
 }
 
+.calendar {
+  max-width: 1280px;          /* was 1100px */
+}
+
+.months-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));  /* was 260px */
+  gap: 24px;                  /* a bit more gap */
+}
+
+
 * { box-sizing: border-box; }
 html, body {
   margin: 0;
@@ -391,7 +402,6 @@ html, body {
   color: var(--text-muted);
 }
 
-/* Thumbnails strip under hero image */
 .month-thumbs {
   display: flex;
   justify-content: center;
@@ -400,13 +410,12 @@ html, body {
   padding: 10px 12px 2px;
 }
 
-/* Each thumbnail as a circle */
+/* Circle without border */
 .month-thumb {
   width: 52px;
   height: 52px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid #08263A; /* match your dark stroke */
   background: #f4f4f4;
   flex-shrink: 0;
 }
@@ -416,11 +425,11 @@ html, body {
   object-fit: cover;
 }
 
-/* Desktop: vertical row aligned right of the card */
+/* Desktop: vertical on the right */
 @media (min-width: 768px) {
   .month-card {
     display: grid;
-    grid-template-columns: 1fr auto;   /* card content + thumbs */
+    grid-template-columns: 3fr auto;
     column-gap: 16px;
     align-items: center;
   }
@@ -434,6 +443,7 @@ html, body {
     grid-row: 1 / span 2;
     flex-direction: column;
     padding: 0 12px 0 0;
+    justify-content: center;
   }
 
   .month-inner {
@@ -441,7 +451,7 @@ html, body {
   }
 }
 
-/* Mobile: thumbnails horizontal below image (as in your second mock) */
+/* Mobile: thumbnails below CTA, horizontal */
 @media (max-width: 767px) {
   .month-card {
     display: block;
@@ -450,6 +460,21 @@ html, body {
   .month-thumbs {
     flex-direction: row;
     justify-content: flex-start;
-    padding: 8px 16px 6px;
+    padding: 8px 16px 12px;
+  }
+
+  /* Move thumbs under CTA: ensure markup order is
+     image -> inner (with button) -> thumbs,
+     or adjust with margin-top here if you keep thumbs below inner */
+}
+
+@media (max-width: 767px) {
+  .month-thumbs {
+    order: 3;
+  }
+  .month-inner {
+    display: flex;
+    flex-direction: column;
   }
 }
+
