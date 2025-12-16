@@ -185,6 +185,7 @@ html, body {
 }
 
 /* Thumbnail strip (3 circles) */
+/* Thumbnail strip (circles) */
 .month-thumbs {
   display: flex;
   justify-content: center;
@@ -193,7 +194,6 @@ html, body {
   padding: 10px 12px 12px;
 }
 
-/* Circle without border */
 .month-thumb {
   width: 52px;
   height: 52px;
@@ -208,7 +208,7 @@ html, body {
   object-fit: cover;
 }
 
-/* Desktop: make card 2‑column, vertical circles on right */
+/* Desktop: show only first 3, hide 4th & 5th */
 @media (min-width: 768px) {
   .month-card {
     display: grid;
@@ -232,9 +232,15 @@ html, body {
     padding: 0 12px 0 0;
     justify-content: center;
   }
+
+  /* Hide 4th and 5th circles on desktop */
+  .month-thumb[data-thumb-index="3"],
+  .month-thumb[data-thumb-index="4"] {
+    display: none;
+  }
 }
 
-/* Mobile: circles below CTA, horizontal */
+/* Mobile: show all 5, horizontal */
 @media (max-width: 767px) {
   .month-card {
     display: block;
@@ -245,6 +251,8 @@ html, body {
     justify-content: flex-start;
     padding: 8px 16px 16px;
   }
+
+  /* Show all 5 on mobile (no hide rule needed) */
 }
 
 /* Modal */
