@@ -1,10 +1,9 @@
 /* Month data:
    - cardImage: hero on landing grid (Jan.PNG etc.)
-   - images: actual carousel assets (mapped to the suggested spots)
+   - images: actual carousel assets (mapped to suggested spots)
    - spots: tourist spots + how they tie to the theme
    - holidays: key dates and observances
 */
-
 const months = [
   {
     key: "january",
@@ -18,9 +17,9 @@ const months = [
       { name: "National Museum of Qatar", note: "Desert‑rose design for heritage‑meets‑modernity narratives." }
     ],
     images: [
-      "images/jan-mia.jpg",          // Museum of Islamic Art
-      "images/jan-skyline.jpg",      // Doha skyline
-      "images/jan-nmoq.jpg",         // National Museum of Qatar
+      "images/jan-mia.jpg",
+      "images/jan-skyline.jpg",
+      "images/jan-nmoq.jpg",
       "images/jan-brand1.jpg",
       "images/jan-brand2.jpg",
       "images/jan-brand3.jpg"
@@ -272,6 +271,7 @@ const months = [
 
 /* Build landing grid with top image + gradient band + CTA */
 const gridEl = document.getElementById('monthsGrid');
+
 gridEl.innerHTML = months.map(m => `
   <article class="month-card"
            data-month="${m.key}"
@@ -288,7 +288,10 @@ gridEl.innerHTML = months.map(m => `
         <span class="month-theme-tag">${m.theme}</span>
       </header>
       <div class="month-subtitle">${m.subtitle}</div>
-      <button class="month-cta" type="button" data-open="${m.key}" aria-label="Open ${m.label} playbook">
+      <button class="month-cta"
+              type="button"
+              data-open="${m.key}"
+              aria-label="Open ${m.label} playbook">
         <span class="icon">⟶</span>
         <span>Open month playbook</span>
       </button>
@@ -306,12 +309,7 @@ if (themeFilter) {
 
     cards.forEach(card => {
       const theme = card.getAttribute('data-theme');
-      if (value === 'all' || theme === value) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
+      card.style.display = (value === 'all' || theme === value) ? '' : 'none';
     });
   });
 }
-
