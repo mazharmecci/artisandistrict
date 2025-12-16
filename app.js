@@ -32,9 +32,9 @@ const months = [
     cardImage: "images/Feb.PNG",
     marquee: "Artisan District: Preparing hearts and minds for Ramadan, we celebrate the spirit of community, wellness, and athletic excellence. Our kitchens stand ready to nourish bodies and souls during this sacred month.",
     spots: [
-      { name: "Aspire Park", note: "Green, active setting for movement, wellness and pre‑Ramadan resets." },
-      { name: "Khalifa Stadium", note: "Sports landmark aligned with performance and national energy." },
-      { name: "Flag Plaza", note: "Patriotic backdrop for community‑driven sports and gatherings." }
+      { name: "Baladna Park", note: "Baladna Park is a family-friendly destination in Qatar, offering a blend of farm life experiences, outdoor activities, and natural beauty." },
+      { name: "Baladna Farm", note: "This unique and spectacular park offers a combination of fun activities, beautiful green spaces, and the opportunity to learn about farm life." },
+      { name: "Baladna Park", note: "The park offers a variety of attractions that cater to different interests, from animal encounters to wonderful adventure activities." }
     ],
     images: [
       "images/feb-Baladna-Farm-Park.jpg",
