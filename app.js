@@ -5,7 +5,7 @@ const months = [
     label: "January",
     theme: "Brand & vision",
     subtitle: "Brand authority, vision and systems",
-    cardImage: "images/Jan.PNG",
+    cardImage: "images/artisan-district.png",
     marqueeAr: "في حي الحرفيين، رحلتنا متجذرة في اعتقاد بسيط لكنه قوي: الطعام الجيد يجمع الناس معًا. من مخبزنا الحرفي الذي يوقظ الصباحات برائحة المخبوزات الطازجة إلى عمليات المطبخ الشاملة لدينا التي تقدم خدمات التموين الصناعي وكافيتريات الموظفين، نحن ملتزمون بالتميز في كل تفصيل",
     marquee: "Artisan District: At Artisan District, our journey is rooted in a simple yet powerful belief: good food brings people together. From our artisan bakery that awakens mornings with the aroma of freshly baked goods to our full-scale kitchen operations serving industrial catering and staff canteens, we are committed to excellence in every detail.",
     spots: [
