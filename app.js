@@ -1,9 +1,4 @@
-/* Month data:
-   - cardImage: hero on landing grid (Jan.PNG etc.)
-   - images: actual carousel assets (mapped to suggested spots)
-   - spots: tourist spots + how they tie to the theme
-   - holidays: key dates and observances
-*/
+/* Month data */
 const months = [
   {
     key: "january",
@@ -269,11 +264,11 @@ const months = [
   }
 ];
 
-/* Build landing grid with top image + gradient band + CTA */
+/* Build landing grid, including thumbnail strip */
 const gridEl = document.getElementById('monthsGrid');
 
 gridEl.innerHTML = months.map(m => {
-  const thumbs = (m.images || []).slice(0, 3); // first 3 for previews
+  const thumbs = (m.images || []).slice(0, 3);
   return `
     <article class="month-card"
              data-month="${m.key}"
@@ -281,15 +276,6 @@ gridEl.innerHTML = months.map(m => {
              tabindex="0"
              aria-label="${m.label}">
       <div class="month-image" style="background-image:url('${m.cardImage}')"></div>
-
-      <!-- Desktop: vertical row of 3 circles; Mobile: horizontal row -->
-      <div class="month-thumbs">
-        ${thumbs.map((src, i) => `
-          <div class="month-thumb">
-            <img src="${src}" alt="${m.label} preview ${i + 1}">
-          </div>
-        `).join('')}
-      </div>
 
       <div class="month-inner">
         <header class="month-header">
@@ -308,18 +294,24 @@ gridEl.innerHTML = months.map(m => {
           <span>Open month playbook</span>
         </button>
       </div>
+
+      <div class="month-thumbs">
+        ${thumbs.map((src, i) => `
+          <div class="month-thumb">
+            <img src="${src}" alt="${m.label} preview ${i + 1}">
+          </div>
+        `).join('')}
+      </div>
     </article>
   `;
 }).join('');
 
-/* Filter by theme: show/hide cards based on data-theme */
+/* Theme filter */
 const themeFilter = document.getElementById('themeFilter');
-
 if (themeFilter) {
   themeFilter.addEventListener('change', () => {
-    const value = themeFilter.value; // "all" or theme label
+    const value = themeFilter.value;
     const cards = document.querySelectorAll('.month-card');
-
     cards.forEach(card => {
       const theme = card.getAttribute('data-theme');
       card.style.display = (value === 'all' || theme === value) ? '' : 'none';
@@ -338,7 +330,7 @@ const dotsEl = document.getElementById('carouselDots');
 const prevBtn = document.querySelector('.carousel-btn.prev');
 const nextBtn = document.querySelector('.carousel-btn.next');
 
-/* Open modal with month data */
+/* Open modal */
 function openModal(monthKey) {
   const month = months.find(m => m.key === monthKey);
   if (!month) return;
@@ -346,7 +338,6 @@ function openModal(monthKey) {
   modalTitleEl.textContent = month.label;
   modalSubtitleEl.textContent = month.subtitle;
 
-  // Holidays
   if (month.holidays && month.holidays.length) {
     holidayBadgesEl.innerHTML = month.holidays.map(h => `
       <span class="holiday-badge">
@@ -359,7 +350,6 @@ function openModal(monthKey) {
       `<span class="holiday-badge"><span class="holiday-label">No highlighted days added yet</span></span>`;
   }
 
-  // Tourist spots
   if (month.spots && month.spots.length) {
     spotsListEl.innerHTML = month.spots.map(s => `
       <div class="spot-pill">
@@ -375,7 +365,6 @@ function openModal(monthKey) {
       `<div class="spot-pill"><div class="spot-icon">📍</div><div class="spot-name">Add Doha highlights here</div></div>`;
   }
 
-  // Carousel items (images mapped to spots where possible)
   const imgs = (month.images || []).slice(0, 6);
   const captions = imgs.map((_, idx) => {
     const spot = month.spots && month.spots[idx] ? month.spots[idx].name : null;
@@ -389,7 +378,6 @@ function openModal(monthKey) {
     </figure>
   `).join('');
 
-  // Dots
   dotsEl.innerHTML = imgs.map((_, i) =>
     `<button class="dot${i===0?' active':''}" data-dot="${i}" aria-label="Go to slide ${i+1}"></button>`
   ).join('');
@@ -414,7 +402,7 @@ function formatDate(iso) {
   return d.toLocaleDateString(undefined, opts);
 }
 
-/* Global click handler: open / close modal */
+/* Open / close click handling */
 document.addEventListener('click', (e) => {
   const openKey = e.target.closest('[data-open]')?.getAttribute('data-open');
   if (openKey) {
@@ -427,7 +415,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-/* Keyboard shortcuts */
+/* Keyboard */
 document.addEventListener('keydown', (e) => {
   if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.month-card')) {
     const mk = e.target.closest('.month-card').getAttribute('data-month');
@@ -478,7 +466,7 @@ carouselEl.addEventListener('scroll', () => {
   });
 });
 
-/* Snap navigation */
+/* Snap nav */
 function snapTo(direction) {
   const items = [...carouselEl.querySelectorAll('.carousel-item')];
   if (!items.length) return;
@@ -504,7 +492,7 @@ function snapTo(direction) {
   items[targetIndex].scrollIntoView({ behavior: 'smooth', inline: 'start' });
 }
 
-/* Focus guard for modal */
+/* Focus guard */
 document.addEventListener('focusin', (e) => {
   if (modalEl.getAttribute('aria-hidden') === 'true') return;
   if (!modalEl.contains(e.target)) {
@@ -514,3 +502,30 @@ document.addEventListener('focusin', (e) => {
     (focusable || modalEl).focus();
   }
 });
+
+/* Auto-loop thumbnail previews (same image set as modal) */
+function startThumbLoop() {
+  const cards = document.querySelectorAll('.month-card');
+
+  cards.forEach(card => {
+    const key = card.getAttribute('data-month');
+    const month = months.find(m => m.key === key);
+    if (!month || !month.images || month.images.length <= 3) return;
+
+    let offset = 0;
+    const thumbs = card.querySelectorAll('.month-thumb img');
+    if (!thumbs.length) return;
+
+    setInterval(() => {
+      offset = (offset + 1) % month.images.length;
+
+      thumbs.forEach((imgEl, idx) => {
+        const index = (offset + idx) % month.images.length;
+        imgEl.src = month.images[index];
+        imgEl.alt = `${month.label} preview ${index + 1}`;
+      });
+    }, 3000);
+  });
+}
+
+startThumbLoop();
