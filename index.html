@@ -14,37 +14,194 @@
       --muted: #6f6f6f;
       --radius: 16px;
     }
-    body { margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--primary); }
-    header { padding:48px 24px 24px; text-align:center; }
-    header h1 { font-family:'Playfair Display',serif; font-size:42px; margin-bottom:12px; }
-    header p { color:var(--muted); max-width:720px; margin:0 auto 24px; font-size:16px; }
-    .filter-bar { text-align:center; margin-bottom:40px; }
-    .filter-bar select { padding:10px 16px; border-radius:999px; border:1px solid var(--muted); font-size:14px; cursor:pointer; }
-    .calendar { max-width:1200px; margin:0 auto 80px; padding:0 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:28px; }
-    .month-card { background:var(--card); border-radius:var(--radius); box-shadow:0 20px 40px rgba(0,0,0,0.06); overflow:hidden; cursor:pointer; transition:transform .3s ease, box-shadow .3s ease; }
-    .month-card:hover { transform:translateY(-6px); box-shadow:0 28px 60px rgba(0,0,0,0.08); }
-    .month-image { height:180px; background-size:cover; background-position:center; }
-    .month-content { padding:22px; }
-    .month-content h2 { font-family:'Playfair Display',serif; font-size:22px; margin:0 0 8px; }
-    .month-content p { color:var(--muted); font-size:14px; margin-bottom:12px; }
-    .tag { display:inline-block; padding:6px 12px; background:rgba(201,162,77,0.12); color:var(--accent); border-radius:999px; font-size:12px; font-weight:500; }
-    .modal { position:fixed; inset:0; background:rgba(0,0,0,0.55); display:none; align-items:center; justify-content:center; padding:24px; z-index:999; }
-    .modal.active { display:flex; }
-    .modal-box { background:#fff; max-width:720px; width:100%; border-radius:var(--radius); padding:32px; animation:fadeIn .3s ease; position:relative; }
-    .modal-box h3 { font-family:'Playfair Display',serif; font-size:28px; margin-bottom:12px; }
-    .modal-box ul { padding-left:18px; color:var(--muted); }
-    .modal-box li { margin-bottom:8px; }
-    .close-btn { margin-top:24px; padding:12px 20px; border:none; border-radius:999px; background:var(--accent); color:#fff; font-weight:600; cursor:pointer; }
-    .close-btn.top-right { position:absolute; top:16px; right:16px; background:none; color:var(--accent); font-size:24px; border:none; cursor:pointer; }
-    @keyframes fadeIn { from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);} }
-    footer { text-align:center; padding:32px; color:var(--muted); font-size:14px; }
-    @media(max-width:600px){ .modal-box{height:100%; border-radius:0; padding:24px;} }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--primary);
+    }
+
+    header {
+      padding: 48px 24px 24px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 auto 24px;
+      font-size: 16px;
+    }
+
+    .filter-bar {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .filter-bar select {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--muted);
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .calendar {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .month-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .month-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.08);
+    }
+
+    .month-image {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .month-content {
+      padding: 22px;
+    }
+
+    .month-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin: 0 0 8px;
+    }
+
+    .month-content p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 12px;
+      background: rgba(201,162,77,0.12);
+      color: var(--accent);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 999;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #fff;
+      max-width: 720px;
+      width: 100%;
+      border-radius: var(--radius);
+      padding: 32px;
+      animation: fadeIn .3s ease;
+      position: relative;
+    }
+
+    .modal-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .modal-box ul {
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .modal-box li {
+      margin-bottom: 8px;
+    }
+
+    .close-btn {
+      margin-top: 24px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .close-btn.top-right {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      color: var(--accent);
+      font-size: 24px;
+      border: none;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media(max-width:600px) {
+      .modal-box {
+        height: 100%;
+        border-radius: 0;
+        padding: 24px;
+      }
+    }
 
     /* Highlight current month */
     .highlight {
       border: 3px solid var(--accent);
       box-shadow: 0 0 20px rgba(201,162,77,0.6);
       transform: scale(1.02);
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%   { box-shadow: 0 0 20px rgba(201,162,77,0.6); transform: scale(1.02); }
+      50%  { box-shadow: 0 0 35px rgba(201,162,77,0.8); transform: scale(1.05); }
+      100% { box-shadow: 0 0 20px rgba(201,162,77,0.6); transform: scale(1.02); }
     }
   </style>
 </head>
@@ -157,7 +314,7 @@
 
   <!-- September -->
   <div class="month-card" data-month="September" data-items="Innovation Lab Dishes|R&D Process|Menu Prototyping" data-tag="Innovation">
-    <div class="month-image" style="background-image:url('images/Sept.PNG')"></div>
+    <div class="month-image" style="background-image:url('./images/Sept.PNG')"></div>
     <div class="month-content">
       <h2>September</h2>
       <p>Culinary innovation and product development</p>
@@ -177,7 +334,7 @@
 
   <!-- November -->
   <div class="month-card" data-month="November" data-items="Compliance Standards|Food Safety Systems|Audit Readiness" data-tag="Compliance">
-    <div class="month-image" style="background-image:url('images/Nov.PNG')"></div>
+    <div class="month-image" style="background-image:url('./images/Nov.PNG')"></div>
     <div class="month-content">
       <h2>November</h2>
       <p>Food safety, governance, and trust</p>
@@ -208,6 +365,7 @@
 <footer>
   © 2026 Artisan District · Doha, Qatar
 </footer>
+
 <script>
   const modal = document.getElementById('modal');
   const modalTitle = document.getElementById('modalTitle');
@@ -251,24 +409,6 @@
     });
   });
 
-  
-<style>
-  /* Highlight current month */
-  .highlight {
-    border: 3px solid var(--accent);
-    box-shadow: 0 0 20px rgba(201,162,77,0.6);
-    transform: scale(1.02);
-    animation: pulseGlow 2s ease-in-out infinite;
-  }
-
-  @keyframes pulseGlow {
-    0% { box-shadow: 0 0 20px rgba(201,162,77,0.6); transform: scale(1.02); }
-    50% { box-shadow: 0 0 35px rgba(201,162,77,0.8); transform: scale(1.05); }
-    100% { box-shadow: 0 0 20px rgba(201,162,77,0.6); transform: scale(1.02); }
-  }
-</style>
-
-<script>
   // Default: show all months and highlight + scroll current month
   window.addEventListener('DOMContentLoaded', () => {
     tagFilter.value = 'all';
@@ -276,14 +416,18 @@
       card.style.display = 'block';
     });
 
-    // Highlight current month
-    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const monthNames = [
+      "January","February","March","April",
+      "May","June","July","August",
+      "September","October","November","December"
+    ];
+
     const now = new Date();
     const currentMonth = monthNames[now.getMonth()];
     const currentCard = document.querySelector(`.month-card[data-month="${currentMonth}"]`);
+
     if (currentCard) {
       currentCard.classList.add('highlight');
-      // Smooth scroll into view
       currentCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   });
