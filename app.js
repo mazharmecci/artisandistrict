@@ -41,10 +41,10 @@ const months = [
       { name: "Flag Plaza", note: "Patriotic backdrop for community‑driven sports and gatherings." }
     ],
     images: [
-      "images/feb-aspire-park.jpg",
+      "images/feb-Baladna-Farm-Park.jpg",
       "images/feb-khalifa.jpg",
-      "images/feb-flag-plaza.jpg",
-      "images/feb-prep1.jpg",
+      "images/feb-Sheikh-Abdulla-Bin-Zaid-AlMahmoud.jpg",
+      "images/feb-aspire-park.jpg",
       "images/feb-prep2.jpg",
       "images/feb-prep3.jpg"
     ],
@@ -66,10 +66,10 @@ const months = [
     images: [
       "images/mar-souq-waqif.jpg",
       "images/mar-katara.jpg",
-      "images/mar-grand-mosque.jpg",
-      "images/mar-iftar1.jpg",
-      "images/mar-iftar2.jpg",
-      "images/mar-iftar3.jpg"
+      "images/mar-Fanar.jpg",
+      "images/mar-inlandsea.jpg",
+      "images/mar-Aspire-Zone-Foundation.jpg",
+      "images/mar-Al-Shahaniya-camel-racetrack.jpg"
     ],
     holidays: [
       { dateISO: "2026-03-17", label: "Ramadan (start) — tentative" }
@@ -90,9 +90,9 @@ const months = [
       "images/apr-pearl.jpg",
       "images/apr-villaggio.jpg",
       "images/apr-alhazm.jpg",
-      "images/apr-eid1.jpg",
-      "images/apr-eid2.jpg",
-      "images/apr-eid3.jpg"
+      "images/apr-pearldome.jpg",
+      "images/apr-Imam-Abdul-Wahhab-mosque.jpg",
+      "images/apr-zubarah.jpg"
     ],
     holidays: [
       { dateISO: "2026-04-13", label: "Eid al-Fitr — tentative" }
@@ -111,7 +111,7 @@ const months = [
     ],
     images: [
       "images/may-msheireb.jpg",
-      "images/may-bakery1.jpg",
+      "images/Qanat-Quartier.jpg",
       "images/may-bakery2.jpg",
       "images/may-bread1.jpg",
       "images/may-bread2.jpg",
@@ -178,9 +178,9 @@ const months = [
       "images/aug-mia-park.jpg",
       "images/aug-mangroves.jpg",
       "images/aug-eco-camp.jpg",
-      "images/aug-sustain1.jpg",
-      "images/aug-sustain2.jpg",
-      "images/aug-sustain3.jpg"
+      "images/aug-Khor-Al-Adaid-Beach.jpg",
+      "images/aug-Heenat-Salma-Farm.jpg",
+      "images/aug-Explore-North-Sedra-Farm.jpg"
     ],
     holidays: []
   },
@@ -199,9 +199,9 @@ const months = [
       "images/sep-katara-art.jpg",
       "images/sep-qnl.jpg",
       "images/sep-education-city.jpg",
-      "images/sep-lab1.jpg",
-      "images/sep-lab2.jpg",
-      "images/sep-lab3.jpg"
+      "images/sep-educity2.jpg",
+      "images/sep-CeremonialCourt.jpg",
+      "images/sep-Dahl-Al-Misfir.jpg"
     ],
     holidays: []
   },
