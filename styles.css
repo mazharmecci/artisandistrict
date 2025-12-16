@@ -460,3 +460,52 @@ html, body {
   padding: 20px 16px 30px;
   color: var(--text-muted);
 }
+
+/* Marquee divider */
+.month-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--qatar-maroon), transparent);
+  margin: 0;
+}
+
+/* Marquee container */
+.month-marquee {
+  background: #fff;
+  padding: 8px 12px;
+  overflow: hidden;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.marquee-text {
+  color: var(--qatar-maroon);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  animation: scroll-left 20s linear infinite;
+  padding-left: 100%;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* On mobile, allow text wrapping and adjust marquee */
+@media (max-width: 767px) {
+  .month-marquee {
+    min-height: auto;
+    padding: 12px 12px;
+  }
+
+  .marquee-text {
+    white-space: normal;
+    animation: none;
+    padding-left: 0;
+  }
+}
