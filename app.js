@@ -530,8 +530,9 @@ function startThumbLoop() {
         imgEl.src = month.images[index];
         imgEl.alt = `${month.label} preview ${index + 1}`;
       });
-    }, 3000);
+    }, 5000);  /* Changed from 3000 to 5000 */
   });
 }
 
 startThumbLoop();
+
