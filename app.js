@@ -268,7 +268,7 @@ const months = [
 const gridEl = document.getElementById('monthsGrid');
 
 gridEl.innerHTML = months.map(m => {
-  const thumbs = (m.images || []).slice(0, 3);
+  const thumbs = (m.images || []).slice(0, 5); // Get 5 images
   return `
     <article class="month-card"
              data-month="${m.key}"
@@ -297,7 +297,7 @@ gridEl.innerHTML = months.map(m => {
 
       <div class="month-thumbs">
         ${thumbs.map((src, i) => `
-          <div class="month-thumb">
+          <div class="month-thumb" data-thumb-index="${i}">
             <img src="${src}" alt="${m.label} preview ${i + 1}">
           </div>
         `).join('')}
