@@ -29,7 +29,7 @@ const months = [
     label: "February",
     theme: "Ramadan prep & sports",
     subtitle: "Early Ramadan planning & National Sports Day",
-    cardImage: "images/Feb.PNG",
+    cardImage: "images/Ramadan.png",
     marqueeAr: "نحن نهيئ القلوب والعقول لشهر رمضان، ونحتفل بروح المجتمع والصحة والتفوق الرياضي. مطابخنا جاهزة لتغذية الأجساد والروح خلال هذا الشهر الكريم",
     marquee: "Artisan District: Preparing hearts and minds for Ramadan, we celebrate the spirit of community, wellness, and athletic excellence. Our kitchens stand ready to nourish bodies and souls during this sacred month.",
     spots: [
