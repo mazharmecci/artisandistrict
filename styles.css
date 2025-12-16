@@ -455,6 +455,7 @@ html, body {
 }
 
 /* Marquee divider */
+/* Marquee divider */
 .month-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--qatar-maroon), transparent);
@@ -478,7 +479,7 @@ html, body {
   color: var(--qatar-maroon);
   font-size: 12px;
   font-weight: 500;
-  animation: scroll-left 40s linear infinite;
+  animation: scroll-left 40s linear 3s infinite;
   display: inline-block;
   white-space: nowrap;
   padding-right: 100%;
@@ -504,8 +505,21 @@ html, body {
   .marquee-text {
     font-size: 11px;
     white-space: nowrap;
-    animation: scroll-left 40s linear infinite;
+    animation: scroll-left 40s linear 3s infinite;
     padding-right: 100%;
+  }
+}
+
+/* Desktop: ensure marquee is below divider */
+@media (min-width: 768px) {
+  .month-marquee {
+    min-height: 50px;
+    margin-top: 6px;
+  }
+
+  .marquee-text {
+    white-space: nowrap;
+    animation: scroll-left 40s linear 3s infinite;
   }
 }
 
