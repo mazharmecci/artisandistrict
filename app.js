@@ -6,7 +6,7 @@ const months = [
     theme: "Brand & vision",
     subtitle: "Brand authority, vision and systems",
     cardImage: "images/Jan.PNG",
-    marquee: "At Artisan District, our journey is rooted in a simple yet powerful belief: good food brings people together. From our artisan bakery that awakens mornings with the aroma of freshly baked goods to our full-scale kitchen operations serving industrial catering and staff canteens, we are committed to excellence in every detail.",
+    marquee: "Artisan District: At Artisan District, our journey is rooted in a simple yet powerful belief: good food brings people together. From our artisan bakery that awakens mornings with the aroma of freshly baked goods to our full-scale kitchen operations serving industrial catering and staff canteens, we are committed to excellence in every detail.",
     spots: [
       { name: "Museum of Islamic Art", note: "Architectural icon that mirrors precision and timeless design." },
       { name: "Doha Skyline", note: "Panoramic city view that suggests ambition and forward vision." },
@@ -43,7 +43,7 @@ const months = [
       "images/feb-prep2.jpg"
     ],
     holidays: [
-      { dateISO: "2026-02-10", label: "National Sports Day (Qatar) — confirm date" }
+      { dateISO: "2026-02-10", label: "National Sports Day (Qatar)" }
     ]
   },
   {
@@ -295,7 +295,7 @@ gridEl.innerHTML = months.map(m => {
         </button>
       </div>
 
-      <div class="month-thumbs">
+            <div class="month-thumbs">
         ${thumbs.map((src, i) => `
           <div class="month-thumb" data-thumb-index="${i}">
             <img src="${src}" alt="${m.label} preview ${i + 1}">
@@ -303,6 +303,14 @@ gridEl.innerHTML = months.map(m => {
         `).join('')}
       </div>
 
+      <div class="month-divider"></div>
+
+      <div class="month-marquee">
+        <div class="marquee-text">${m.marquee}</div>
+      </div>
+    </article>
+  `;
+}).join('');
 
 /* Theme filter */
 const themeFilter = document.getElementById('themeFilter');
@@ -464,7 +472,7 @@ carouselEl.addEventListener('scroll', () => {
   });
 });
 
-/* Snap nav */
+/* Snap navigation */
 function snapTo(direction) {
   const items = [...carouselEl.querySelectorAll('.carousel-item')];
   if (!items.length) return;
@@ -501,7 +509,7 @@ document.addEventListener('focusin', (e) => {
   }
 });
 
-/* Auto-loop thumbnail previews (same image set as modal) */
+/* Auto-loop thumbnail previews */
 function startThumbLoop() {
   const cards = document.querySelectorAll('.month-card');
 
