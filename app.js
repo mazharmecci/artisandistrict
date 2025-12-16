@@ -6,7 +6,7 @@ const months = [
     theme: "Brand & vision",
     subtitle: "Brand authority, vision and systems",
     cardImage: "images/Jan.PNG",
-    marqueeAr: "حي الحرفيين: في حي الحرفيين، رحلتنا متجذرة في اعتقاد بسيط لكنه قوي: الطعام الجيد يجمع الناس معاً. بدءاً من مخبزنا الحرفي الذي يملأ الصباح برائحة المخبوزات الطازجة، وصولاً إلى عمليات المطبخ الشاملة التي تقدم خدمات التموين الصناعي ومقاصف الموظفين، نحن ملتزمون بالتميز في كل تفصيلة.",
+    marqueeAr: "في حي الحرفيين، رحلتنا متجذرة في اعتقاد بسيط لكنه قوي: الطعام الجيد يجمع الناس معًا. من مخبزنا الحرفي الذي يوقظ الصباحات برائحة المخبوزات الطازجة إلى عمليات المطبخ الشاملة لدينا التي تقدم خدمات التموين الصناعي وكافيتريات الموظفين، نحن ملتزمون بالتميز في كل تفصيل",
     marquee: "Artisan District: At Artisan District, our journey is rooted in a simple yet powerful belief: good food brings people together. From our artisan bakery that awakens mornings with the aroma of freshly baked goods to our full-scale kitchen operations serving industrial catering and staff canteens, we are committed to excellence in every detail.",
     spots: [
       { name: "Museum of Islamic Art", note: "Architectural icon that mirrors precision and timeless design." },
@@ -30,6 +30,7 @@ const months = [
     theme: "Ramadan prep & sports",
     subtitle: "Early Ramadan planning & National Sports Day",
     cardImage: "images/Feb.PNG",
+    marqueeAr: "نحن نهيئ القلوب والعقول لشهر رمضان، ونحتفل بروح المجتمع والصحة والتفوق الرياضي. مطابخنا جاهزة لتغذية الأجساد والروح خلال هذا الشهر الكريم",
     marquee: "Artisan District: Preparing hearts and minds for Ramadan, we celebrate the spirit of community, wellness, and athletic excellence. Our kitchens stand ready to nourish bodies and souls during this sacred month.",
     spots: [
       { name: "Baladna Park", note: "Baladna Park is a family-friendly destination in Qatar, offering a blend of farm life experiences, outdoor activities, and natural beauty." },
@@ -53,7 +54,8 @@ const months = [
     theme: "Ramadan activation",
     subtitle: "Ramadan activation and community focus",
     cardImage: "images/Mar.PNG",
-    marquee: "Artisan District: During Ramadan, we elevate the tradition of breaking fast with thoughtfully curated menus that honor heritage while celebrating community. Every meal tells a story of care and connection.",
+    marqueeAr: "منطقة الحرفيين: خلال شهر رمضان، نرتقي بتقليد إفطار الصائم من خلال قوائم منتقاة بعناية تكرم التراث وتحتفل بالمجتمع. كل وجبة تحكي قصة من العناية والتواصل",
+    marquee: "Artisan District: Artisan District: During Ramadan, we elevate the tradition of breaking fast with thoughtfully curated menus that honor heritage while celebrating community. Every meal tells a story of care and connection.",
     spots: [
       { name: "Souq Waqif", note: "Community heart of Doha, ideal for night‑time Ramadan stories." },
       { name: "Katara Cultural Village", note: "Blends culture, faith and gathering spaces in one frame." },
@@ -76,6 +78,7 @@ const months = [
     theme: "Eid luxury",
     subtitle: "Eid luxury experiences and gifting",
     cardImage: "images/Apr.PNG",
+    marqueeAr: "حي الحرفيين: الاحتفال بالعيد يجسد الفرح والكرم والتواصل الاجتماعي. مجموعاتنا الطهوية الفاخرة تحول التجمعات إلى لحظات لا تُنسى من الفخامة والدفء",
     marquee: "Artisan District: Eid celebrates joy, generosity, and togetherness. Our premium culinary collections transform gatherings into unforgettable moments of luxury and warmth.",
     spots: [
       { name: "The Pearl-Qatar", note: "Upscale waterfront living, perfect for premium Eid hospitality." },
@@ -99,6 +102,7 @@ const months = [
     theme: "Artisan bakery",
     subtitle: "Artisan bread stories & pastry craft",
     cardImage: "images/May.PNG",
+    marqueeAr: "يلتقي الحرفية بالشغف في مخبزنا. التخمير البطيء، الوصفات التراثية، وأفضل المكونات تخلق خبزًا ومعجنات تتجاوز اللحظات العادية",
     marquee: "Artisan District: Craftsmanship meets passion in our bakery. Slow fermentation, heritage recipes, and the finest ingredients create breads and pastries that transcend ordinary moments.",
     spots: [
       { name: "Msheireb Downtown Doha", note: "Modern streetscapes that suit cafe and bakery shots." },
@@ -120,6 +124,7 @@ const months = [
     theme: "Industrial catering",
     subtitle: "Scale, safety and nutrition at volume",
     cardImage: "images/Jun.PNG",
+    marqueeAr: "على نطاق واسع، نحن لا نساوم أبدًا. عمليات التموين الصناعي لدينا تجمع بين الدقة والسلامة والتغذية لتغذية المئات بنفس الرعاية التي نقدمها لشخص واحد",
     marquee: "Artisan District: At scale, we never compromise. Our industrial catering operations blend precision, safety, and nutrition to feed hundreds with the same care we'd give to one.",
     spots: [
       { name: "Doha Corniche", note: "Long‑form visual metaphor for scale and flow." },
@@ -143,6 +148,7 @@ const months = [
     theme: "Canteen management",
     subtitle: "Modern canteen experiences & flows",
     cardImage: "images/Jul.PNG",
+    marqueeAr: "المقصف أكثر من كونه كافيتيريا—إنه مركز للصحة والاتصال والتغذية. مساحاتنا الحديثة وقوائم الطعام المدروسة تمنح الطاقة لكل يوم عمل",
     marquee: "Artisan District: A canteen is more than a cafeteria—it's a hub of wellness, connection, and nourishment. Our modern spaces and thoughtful menus energize every workday.",
     spots: [
       { name: "BoxPark", note: "Container‑inspired modernity, perfect for canteen design analogies." },
@@ -164,6 +170,7 @@ const months = [
     theme: "Sustainability",
     subtitle: "Sustainability & mindful sourcing",
     cardImage: "images/Aug.PNG",
+    marqueeAr: "الاستدامة ليست موضة—إنها مسؤوليتنا. من التوريد المحلي إلى ممارسات عدم إهدار الموارد، كل اختيار يعكس التزامنا بالكوكب والأجيال القادمة",
     marquee: "Artisan District: Sustainability isn't a trend—it's our responsibility. From local sourcing to zero-waste practices, every choice reflects our commitment to the planet and future generations.",
     spots: [
       { name: "MIA Park", note: "Greenspace that holds both skyline and sustainability in one view." },
@@ -185,6 +192,7 @@ const months = [
     theme: "Innovation",
     subtitle: "Culinary innovation and R&D",
     cardImage: "images/Sept.PNG",
+    marqueeAr: "منطقة الحرفيين: الابتكار يغذي مطبخنا. التجارب الجريئة، والتقنيات المتطورة، والإبداع بلا خوف تدفع حدود الطهي وتعيد تعريف الممكن على كل طبق",
     marquee: "Artisan District: Innovation fuels our kitchen. Bold experiments, cutting-edge techniques, and fearless creativity push culinary boundaries and redefine what's possible on every plate.",
     spots: [
       { name: "Katara Art Center", note: "Creative hub to stage experimental plating and concepts." },
@@ -206,6 +214,7 @@ const months = [
     theme: "Our team",
     subtitle: "Celebrating the people behind the brand",
     cardImage: "images/Oct.PNG",
+    marqueeAr: "فريقنا هو نبض حياتنا. الطهاة الموهوبون، والموظفون المتفانون، والأفراد المتحمسون يجلبون التميز إلى الحياة كل يوم، ويخلقون طعامًا يغذي ويلهم.",
     marquee: "Artisan District: Our team is our heartbeat. Talented chefs, dedicated staff, and passionate individuals bring excellence to life every single day, creating food that nourishes and inspires.",
     spots: [
       { name: "Museum of Islamic Art", note: "Hero background for chef portraits and leadership features." },
@@ -227,6 +236,7 @@ const months = [
     theme: "Compliance",
     subtitle: "Food safety, governance and trust",
     cardImage: "images/Nov.PNG",
+    marqueeAr: "منطقة الحرفيين: يُكتسب الثقة من خلال الالتزام الدائم بالسلامة والنظافة والامتثال. كل معيار، كل تدقيق، كل شهادة هي وعدنا برفاهيتك",
     marquee: "Artisan District: Trust is earned through unwavering commitment to safety, hygiene, and compliance. Every standard, every audit, every certification is our promise to your wellbeing.",
     spots: [
       { name: "Qatar National Convention Centre", note: "Signals formal standards, conferences and governance." },
@@ -248,6 +258,7 @@ const months = [
     theme: "Year in review",
     subtitle: "Highlights, testimonials & 2027 vision",
     cardImage: "images/Dec.PNG",
+    marqueeAr: "بينما نحتفل بعام 2026، نتأمل في الإنجازات التي تحققت والصلات التي تم بناؤها. معًا، غذّينا الآلاف ووضعنا الأساس لعام 2027 الجريء",
     marquee: "Artisan District: As we celebrate 2026, we reflect on milestones achieved and connections forged. Together, we've nourished thousands and set the foundation for a bold 2027.",
     spots: [
       { name: "Doha Corniche fireworks", note: "Celebratory skyline for wrap‑ups and milestones." },
