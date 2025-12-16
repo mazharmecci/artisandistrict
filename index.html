@@ -2,601 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Artisan District – 2026 Content Calendar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #1c1c1c;
-      --accent: #c9a24d;
-      --bg: #f8f8f6;
-      --card: #ffffff;
-      --muted: #6f6f6f;
-      --radius: 16px;
-
-      /* Qatar flag colors (approximate) */
-      --qatar-maroon: rgb(141, 23, 55);
-      --qatar-white: rgb(240, 240, 240);
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--primary);
-    }
-
-    header {
-      padding: 48px 24px 24px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 42px;
-      margin-bottom: 12px;
-    }
-
-    header p {
-      color: var(--muted);
-      max-width: 720px;
-      margin: 0 auto 24px;
-      font-size: 16px;
-    }
-
-    .filter-bar {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .filter-bar select {
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--muted);
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    .calendar {
-      max-width: 1200px;
-      margin: 0 auto 80px;
-      padding: 0 24px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
-    }
-
-    .month-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform .3s ease, box-shadow .3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .month-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 28px 60px rgba(0,0,0,0.08);
-    }
-
-    .month-image {
-      height: 180px;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .month-content {
-      padding: 22px 22px 14px;
-    }
-
-    .month-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 0 0 8px;
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-    }
-
-    .month-title img {
-      height: 18px;
-      border-radius: 2px;
-      object-fit: cover;
-    }
-
-    .month-content p {
-      color: var(--muted);
-      font-size: 14px;
-      margin: 0 0 12px;
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 6px 12px;
-      background: rgba(201,162,77,0.12);
-      color: var(--accent);
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    /* Qatar gradient detail bar under each month */
-    .month-detail {
-      position: relative;
-      padding: 10px 18px;
-      background: linear-gradient(
-        to right,
-        var(--qatar-maroon),
-        var(--qatar-white)
-      );
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 12px;
-    }
-
-    .month-detail-text {
-      z-index: 1;
-      max-width: 80%;
-    }
-
-    .month-detail-text span {
-      display: block;
-      opacity: 0.9;
-    }
-
-    .month-detail-flag {
-      position: absolute;
-      right: 10px;
-      bottom: 6px;
-      width: 64px;
-      height: 32px;
-      background-image: url('./images/qatar.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.35;
-      filter: saturate(1.1);
-      z-index: 0;
-    }
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      z-index: 999;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-box {
-      background: #fff;
-      max-width: 720px;
-      width: 100%;
-      border-radius: var(--radius);
-      padding: 32px;
-      animation: fadeIn .3s ease;
-      position: relative;
-    }
-
-    .modal-box h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
-
-    .modal-box ul {
-      padding-left: 18px;
-      color: var(--muted);
-    }
-
-    .modal-box li {
-      margin-bottom: 8px;
-    }
-
-    .close-btn {
-      margin-top: 24px;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .close-btn.top-right {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: none;
-      color: var(--accent);
-      font-size: 24px;
-      border: none;
-      cursor: pointer;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    footer {
-      text-align: center;
-      padding: 32px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    @media(max-width:600px) {
-      .modal-box {
-        height: 100%;
-        border-radius: 0;
-        padding: 24px;
-      }
-    }
-
-    /* Highlight current month */
-    .highlight {
-      border: 3px solid var(--accent);
-      box-shadow: 0 0 20px rgba(201,162,77,0.6);
-      transform: scale(1.02);
-      animation: pulseGlow 2s ease-in-out infinite;
-    }
-
-    @keyframes pulseGlow {
-      0%   { box-shadow: 0 0 20px rgba(201,162,77,0.6); transform: scale(1.02); }
-      50%  { box-shadow: 0 0 35px rgba(201,162,77,0.8); transform: scale(1.05); }
-      100% { box-shadow: 0 0 20px rgba(201,162,77,0.6); transform: scale(1.02); }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Artisan District — 2026 Content Calendar</title>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
+  <header class="site-header">
+    <h1>Artisan District — 2026 Calendar</h1>
+    <p>Premium hospitality content planning crafted for Doha, Qatar.</p>
+  </header>
 
-<header>
-  <h1>Artisan District – 2026 Content Calendar</h1>
-  <p>A premium, brand-led content planning system designed for hospitality excellence in Doha, Qatar.</p>
-</header>
+  <main class="calendar">
+    <!-- Months grid generated by JS into #monthsGrid -->
+    <section id="monthsGrid" class="months-grid" aria-label="2026 calendar months"></section>
+  </main>
 
-<div class="filter-bar">
-  <label for="tagFilter">Filter by Tag: </label>
-  <select id="tagFilter">
-    <option value="all">Show All</option>
-    <option value="Brand & Strategy">Brand & Strategy</option>
-    <option value="Artisan Bakery">Artisan Bakery</option>
-    <option value="Industrial Catering">Industrial Catering</option>
-    <option value="Ramadan & Community">Ramadan & Community</option>
-    <option value="Sustainability">Sustainability</option>
-    <option value="Luxury Events">Luxury Events</option>
-    <option value="Our Team">Our Team</option>
-    <option value="Compliance">Compliance</option>
-    <option value="Canteen Management">Canteen Management</option>
-    <option value="Partnerships">Partnerships</option>
-    <option value="Innovation">Innovation</option>
-    <option value="Year in Review">Year in Review</option>
-  </select>
-</div>
+  <!-- Modal for month details -->
+  <div id="monthModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" aria-label="Close" data-close="true">×</button>
 
-<section class="calendar">
-  <!-- January -->
-  <div class="month-card" data-month="January" data-items="Brand Vision|Central Kitchen Overview|Certifications" data-tag="Brand & Strategy">
-    <div class="month-image" style="background-image:url('./images/Jan.PNG')"></div>
-    <div class="month-content">
-      <h2 class="month-title">
-        <img src="./images/qatar.jpg" alt="Qatar Flag">
-        January
-      </h2>
-      <p>Brand authority, vision, and systems</p>
-      <span class="tag">Brand & Strategy</span>
-    </div>
-    <div class="month-detail">
-      <div class="month-detail-text">
-        <span>Position Artisan District as Doha’s precision-driven culinary hub to start the year strong.</span>
+      <div class="modal-header">
+        <h2 id="modalTitle"></h2>
+        <div id="modalSubtitle" class="modal-subtitle"></div>
       </div>
-      <div class="month-detail-flag"></div>
-    </div>
-  </div>
 
-  <!-- February -->
-  <div class="month-card" data-month="February" data-items="Ramadan Menu Planning|Supplier Coordination|Community Outreach" data-tag="Ramadan & Community">
-    <div class="month-image" style="background-image:url('./images/Feb.PNG')"></div>
-    <div class="month-content">
-      <h2 class="month-title">
-        <img src="./images/qatar.jpg" alt="Qatar Flag">
-        February
-      </h2>
-      <p>Early Ramadan planning and partnerships</p>
-      <span class="tag">Ramadan & Community</span>
-    </div>
-    <div class="month-detail">
-      <div class="month-detail-text">
-        <span>Show preparedness and cultural sensitivity ahead of Ramadan through thoughtful planning stories.</span>
+      <div class="modal-content">
+        <!-- Holidays -->
+        <section class="holiday-section">
+          <h3 class="section-title">Highlighted days</h3>
+          <div id="holidayBadges" class="holiday-badges"></div>
+        </section>
+
+        <!-- Tourist spots -->
+        <section class="spots-section">
+          <h3 class="section-title">Suggested Doha highlights</h3>
+          <div id="spotsList" class="spots-list"></div>
+        </section>
+
+        <!-- Carousel -->
+        <section class="carousel-section">
+          <h3 class="section-title">Monthly visual highlights</h3>
+
+          <div class="carousel-wrapper">
+            <button class="carousel-btn prev" aria-label="Previous photo">‹</button>
+
+            <div class="carousel" id="carousel" tabindex="0" aria-label="Tourist photos carousel">
+              <!-- Slides injected by JS -->
+            </div>
+
+            <button class="carousel-btn next" aria-label="Next photo">›</button>
+          </div>
+
+          <div id="carouselDots" class="carousel-dots" aria-hidden="true"></div>
+        </section>
       </div>
-      <div class="month-detail-flag"></div>
     </div>
   </div>
 
-  <!-- March -->
-  <div class="month-card" data-month="March" data-items="Ramadan Campaign Launch|Packaging Concepts|Charity Collaborations" data-tag="Ramadan & Community">
-    <div class="month-image" style="background-image:url('./images/Mar.PNG')"></div>
-    <div class="month-content">
-      <h2 class="month-title">
-        <img src="./images/qatar.jpg" alt="Qatar Flag">
-        March
-      </h2>
-      <p>Ramadan activation and community focus</p>
-      <span class="tag">Ramadan & Community</span>
-    </div>
-    <div class="month-detail">
-      <div class="month-detail-text">
-        <span>Highlight community collaboration, charity initiatives, and meaningful Ramadan experiences.</span>
-      </div>
-      <div class="month-detail-flag"></div>
-    </div>
-  </div>
+  <footer class="site-footer">
+    <small>&copy; 2026 Artisan District · Built with care in Doha, Qatar.</small>
+  </footer>
 
-  <!-- April -->
-  <div class="month-card" data-month="April" data-items="Eid Gifting Collections|Family Feasts|Corporate Hampers" data-tag="Luxury Events">
-    <div class="month-image" style="background-image:url('./images/Apr.PNG')"></div>
-    <div class="month-content">
-      <h2 class="month-title">
-        <img src="./images/qatar.jpg" alt="Qatar Flag">
-        April
-      </h2>
-      <p>Eid luxury experiences and gifting</p>
-      <span class="tag">Luxury Events</span>
-    </div>
-    <div class="month-detail">
-      <div class="month-detail-text">
-        <span>Lean into premium Eid hampers, hosting rituals, and elevated family dining moments.</span>
-      </div>
-      <div class="month-detail-flag"></div>
-    </div>
-  </div>
-
-  <!-- May -->
-  <div class="month-card" data-month="May" data-items="Artisan Bread Stories|Signature Pastries|Behind-the-Scenes Baking" data-tag="Artisan Bakery">
-    <div class="month-image" style="background-image:url('./images/May.PNG')"></div>
-    <div class="month-content">
-      <h2 class="month-title">
-        <img src="./images/qatar.jpg" alt="Qatar Flag">
-        May
-      </h2>
-      <p>Showcasing the craft of artisan baking</p>
-      <span class="tag">Artisan Bakery</span>
-    </div>
-    <div class="month-detail">
-      <div class="month-detail-text">
-        <span>Tell stories of craftsmanship, slow fermentation, and signature baked icons for Doha.</span>
-      </div>
-      <div class="month-detail-flag"></div>
-    </div>
-  </div>
-
-  <!-- June -->
-  <div class="month-card" data-month="June" data-items="Industrial Catering Capabilities|Worker Welfare Nutrition|Menu Engineering" data-tag="Industrial Catering">
-    <div class="month-image" style="background-image:url('./images/Jun.PNG')"></div>
-    <div class="month-content">
-      <h2 class="month-title">
-        <img src="./images/qatar.jpg" alt="Qatar Flag">
-        June
-      </h2>
-      <p>Scale, safety, and nutrition at volume</p>
-      <span class="tag">Industrial Catering</span>
-    </div>
-    <div class="month-detail">
-      <div class="month-detail-text">
-        <span>Reassure enterprise clients with stories of scale, compliance, and worker-centric nutrition.</span>
-      </div>
-      <div class="month-detail-flag"></div>
-    </div>
-  </div>
-
-  <!-- July -->
-  <div class="month-card" data-month="July" data-items="Canteen Design Stories|Meal Experience Flow|Client Success Highlights" data-tag="Canteen Management">
-    <div class="month-image" style="background-image:url('./images/Jul.PNG')"></div>
-    <div class="month-content">
-      <h2 class="month-title">
-        <img src="./images/qatar.jpg" alt="Qatar Flag">
-        July
-      </h2>
-      <p>Modern canteen experiences and operations</p>
-      <span class="tag">Canteen Management</span>
-    </div>
-    <div class="month-detail">
-      <div class="month-detail-text">
-        <span>Show canteen journeys from queue to plate, focusing on experience and efficiency.</span>
-      </div>
-      <div class="month-detail-flag"></div>
-    </div>
-  </div>
-
-  <!-- August -->
-  <div class="month-card" data-month="August" data-items="Sustainability Roadmap|Food Waste Reduction|Local Sourcing Initiatives" data-tag="Sustainability">
-    <div class="month-image" style="background-image:url('./images/Aug.PNG')"></div>
-    <div class="month-content">
-      <h2 class="month-title">
-        <img src="./images/qatar.jpg" alt="Qatar Flag">
-        August
-      </h2>
-      <p>Sustainable kitchens and mindful sourcing</p>
-      <span class="tag">Sustainability</span>
-    </div>
-    <div class="month-detail">
-      <div class="month-detail-text">
-        <span>Map out sustainability wins, waste reduction, and local producer relationships in Qatar.</span>
-      </div>
-      <div class="month-detail-flag"></div>
-    </div>
-  </div>
-
-  <!-- September -->
-  <div class="month-card" data-month="September" data-items="Innovation Lab Dishes|R&D Process|Menu Prototyping" data-tag="Innovation">
-    <div class="month-image" style="background-image:url('./images/Sept.PNG')"></div>
-    <div class="month-content">
-      <h2 class="month-title">
-        <img src="./images/qatar.jpg" alt="Qatar Flag">
-        September
-      </h2>
-      <p>Culinary innovation and product development</p>
-      <span class="tag">Innovation</span>
-    </div>
-    <div class="month-detail">
-      <div class="month-detail-text">
-        <span>Spotlight testing, menu R&D, and future-forward dishes crafted in Doha.</span>
-      </div>
-      <div class="month-detail-flag"></div>
-    </div>
-  </div>
-
-  <!-- October -->
-  <div class="month-card" data-month="October" data-items="Team Profiles|Chef Stories|Training & Development" data-tag="Our Team">
-    <div class="month-image" style="background-image:url('./images/Oct.PNG')"></div>
-    <div class="month-content">
-      <h2 class="month-title">
-        <img src="./images/qatar.jpg" alt="Qatar Flag">
-        October
-      </h2>
-      <p>Celebrating the people behind the brand</p>
-      <span class="tag">Our Team</span>
-    </div>
-    <div class="month-detail">
-      <div class="month-detail-text">
-        <span>Humanize the brand through chef stories, training culture, and local talent.</span>
-      </div>
-      <div class="month-detail-flag"></div>
-    </div>
-  </div>
-
-  <!-- November -->
-  <div class="month-card" data-month="November" data-items="Compliance Standards|Food Safety Systems|Audit Readiness" data-tag="Compliance">
-    <div class="month-image" style="background-image:url('./images/Nov.PNG')"></div>
-    <div class="month-content">
-      <h2 class="month-title">
-        <img src="./images/qatar.jpg" alt="Qatar Flag">
-        November
-      </h2>
-      <p>Food safety, governance, and trust</p>
-      <span class="tag">Compliance</span>
-    </div>
-    <div class="month-detail">
-      <div class="month-detail-text">
-        <span>Reinforce confidence with certifications, audits, and safety-first culture in Qatar.</span>
-      </div>
-      <div class="month-detail-flag"></div>
-    </div>
-  </div>
-
-  <!-- December -->
-  <div class="month-card" data-month="December" data-items="Year Highlights|Client Testimonials|2027 Vision" data-tag="Year in Review">
-    <div class="month-image" style="background-image:url('./images/Dec.PNG')"></div>
-    <div class="month-content">
-      <h2 class="month-title">
-        <img src="./images/qatar.jpg" alt="Qatar Flag">
-        December
-      </h2>
-      <p>Year in review and future outlook</p>
-      <span class="tag">Year in Review</span>
-    </div>
-    <div class="month-detail">
-      <div class="month-detail-text">
-        <span>Close the year with highlights, impact, and a confident vision for 2027.</span>
-      </div>
-      <div class="month-detail-flag"></div>
-    </div>
-  </div>
-</section>
-
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <button class="close-btn top-right" onclick="closeModal()">×</button>
-    <h3 id="modalTitle"></h3>
-    <ul id="modalList"></ul>
-    <button class="close-btn" onclick="closeModal()">Close</button>
-  </div>
-</div>
-
-<footer>
-  © 2026 Artisan District · Doha, Qatar
-</footer>
-
-<script>
-  const modal = document.getElementById('modal');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalList = document.getElementById('modalList');
-  const tagFilter = document.getElementById('tagFilter');
-
-  // Modal logic
-  document.querySelectorAll('.month-card').forEach(card => {
-    card.addEventListener('click', () => {
-      modalTitle.textContent = card.dataset.month + ' Content Focus';
-      modalList.innerHTML = '';
-      card.dataset.items.split('|').forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        modalList.appendChild(li);
-      });
-      modal.classList.add('active');
-    });
-  });
-
-  function closeModal() {
-    modal.classList.remove('active');
-  }
-
-  // Close modal with Escape key
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-      closeModal();
-    }
-  });
-
-  // Filter logic
-  tagFilter.addEventListener('change', () => {
-    const selectedTag = tagFilter.value;
-    document.querySelectorAll('.month-card').forEach(card => {
-      if (selectedTag === 'all' || card.dataset.tag === selectedTag) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  });
-
-  // Default: show all months and highlight + scroll current month
-  window.addEventListener('DOMContentLoaded', () => {
-    tagFilter.value = 'all';
-    document.querySelectorAll('.month-card').forEach(card => {
-      card.style.display = 'block';
-    });
-
-    const monthNames = [
-      "January","February","March","April",
-      "May","June","July","August",
-      "September","October","November","December"
-    ];
-
-    const now = new Date();
-    const currentMonth = monthNames[now.getMonth()];
-    const currentCard = document.querySelector(`.month-card[data-month="${currentMonth}"]`);
-
-    if (currentCard) {
-      currentCard.classList.add('highlight');
-      currentCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  });
-</script>
-
+  <script src="app.js"></script>
 </body>
 </html>
