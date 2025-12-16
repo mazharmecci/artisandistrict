@@ -1,7 +1,4 @@
-/* Data schema:
-  - months: label, theme, subtitle, spots, images, holidays
-  - Images: map to your real assets in /images
-*/
+/* Month data: adds cardImage for landing hero (Jan.PNG, Feb.PNG, etc.) */
 
 const months = [
   {
@@ -9,6 +6,7 @@ const months = [
     label: "January",
     theme: "Brand & strategy",
     subtitle: "Brand authority, vision and systems",
+    cardImage: "images/Jan.PNG",
     spots: [
       { name: "The Pearl Monument", note: "Use as an icon of ambition when talking future pipeline." }
     ],
@@ -25,6 +23,7 @@ const months = [
     label: "February",
     theme: "Ramadan & community",
     subtitle: "Early Ramadan planning & National Sports Day",
+    cardImage: "images/Feb.PNG",
     spots: [
       { name: "Flag Plaza", note: "Patriotic, perfect for National Sports Day storytelling." }
     ],
@@ -41,6 +40,7 @@ const months = [
     label: "March",
     theme: "Ramadan & community",
     subtitle: "Ramadan activation and community focus",
+    cardImage: "images/Mar.PNG",
     spots: [
       { name: "Al Zubara Fort", note: "Historic frame for heritage and community roots." }
     ],
@@ -57,6 +57,7 @@ const months = [
     label: "April",
     theme: "Luxury events",
     subtitle: "Eid luxury experiences and gifting",
+    cardImage: "images/Apr.PNG",
     spots: [
       { name: "The Pearl Monument", note: "Pairs beautifully with luxury Eid gifting visuals." }
     ],
@@ -73,6 +74,7 @@ const months = [
     label: "May",
     theme: "Artisan bakery",
     subtitle: "Artisan bread stories & pastry craft",
+    cardImage: "images/May.PNG",
     spots: [
       { name: "The City Gallery", note: "Artistic backdrop for bakery artistry shots." }
     ],
@@ -87,6 +89,7 @@ const months = [
     label: "June",
     theme: "Industrial catering",
     subtitle: "Scale, safety and nutrition at volume",
+    cardImage: "images/Jun.PNG",
     spots: [
       { name: "Al Zubara Fort", note: "Use in long‑form pieces about heritage and endurance." }
     ],
@@ -103,6 +106,7 @@ const months = [
     label: "July",
     theme: "Canteen management",
     subtitle: "Modern canteen experiences & flows",
+    cardImage: "images/Jul.PNG",
     spots: [
       { name: "BoxPark", note: "Vibrant, container‑inspired aesthetic that mirrors canteen energy." }
     ],
@@ -117,6 +121,7 @@ const months = [
     label: "August",
     theme: "Sustainability",
     subtitle: "Sustainability & mindful sourcing",
+    cardImage: "images/Aug.PNG",
     spots: [
       { name: "MIA Park", note: "Serene green space for sustainability and wellness stories." }
     ],
@@ -131,6 +136,7 @@ const months = [
     label: "September",
     theme: "Innovation",
     subtitle: "Culinary innovation and R&D",
+    cardImage: "images/Sept.PNG",
     spots: [
       { name: "The Golden Thumb Statue", note: "Quirky visual hook for innovation and bold ideas." }
     ],
@@ -145,6 +151,7 @@ const months = [
     label: "October",
     theme: "Our team",
     subtitle: "Celebrating the people behind the brand",
+    cardImage: "images/Oct.PNG",
     spots: [
       { name: "Museum of Islamic Art", note: "Cultural gravitas for chef profiles and leadership features." },
       { name: "The City Gallery", note: "Artistic lens for talent, training, and creativity." }
@@ -160,6 +167,7 @@ const months = [
     label: "November",
     theme: "Compliance",
     subtitle: "Food safety, governance and trust",
+    cardImage: "images/Nov.PNG",
     spots: [
       { name: "Al Zubara Fort", note: "Symbolise resilience and strong foundations in compliance stories." }
     ],
@@ -174,6 +182,7 @@ const months = [
     label: "December",
     theme: "Year in review",
     subtitle: "Highlights, testimonials & 2027 vision",
+    cardImage: "images/Dec.PNG",
     spots: [
       { name: "Museum of Islamic Art", note: "End‑of‑year reflections with Doha’s skyline as a backdrop." }
     ],
@@ -185,10 +194,11 @@ const months = [
   }
 ];
 
-/* Build months grid */
+/* Build months grid: now shows top image + gradient band + CTA */
 const gridEl = document.getElementById('monthsGrid');
 gridEl.innerHTML = months.map(m => `
   <article class="month-card" data-month="${m.key}" tabindex="0" aria-label="${m.label}">
+    <div class="month-image" style="background-image:url('${m.cardImage}')"></div>
     <div class="month-inner">
       <header class="month-header">
         <div class="month-left">
@@ -198,7 +208,7 @@ gridEl.innerHTML = months.map(m => `
         <span class="month-theme-tag">${m.theme}</span>
       </header>
       <div class="month-subtitle">${m.subtitle}</div>
-      <button class="month-cta" data-open="${m.key}" aria-label="Open ${m.label} details">
+      <button class="month-cta" type="button" data-open="${m.key}" aria-label="Open ${m.label} playbook">
         <span class="icon">⟶</span>
         <span>Open month playbook</span>
       </button>
@@ -206,7 +216,8 @@ gridEl.innerHTML = months.map(m => `
   </article>
 `).join('');
 
-/* Modal elements */
+/* Modal elements and logic same as previous answer (unchanged) */
+
 const modalEl = document.getElementById('monthModal');
 const modalTitleEl = document.getElementById('modalTitle');
 const modalSubtitleEl = document.getElementById('modalSubtitle');
@@ -267,7 +278,6 @@ function openModal(monthKey) {
     `<button class="dot${i===0?' active':''}" data-dot="${i}" aria-label="Go to slide ${i+1}"></button>`
   ).join('');
 
-  // Reset scroll to first item
   requestAnimationFrame(() => {
     carouselEl.scrollTo({ left: 0, behavior: 'instant' });
   });
@@ -279,7 +289,7 @@ function closeModal() {
   modalEl.setAttribute('aria-hidden', 'true');
 }
 
-/* Date formatting helper */
+/* Date helper */
 function formatDate(iso) {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
@@ -287,7 +297,7 @@ function formatDate(iso) {
   return d.toLocaleDateString(undefined, opts);
 }
 
-/* Event delegation for opening/closing modal */
+/* Open / close events */
 document.addEventListener('click', (e) => {
   const openKey = e.target.closest('[data-open]')?.getAttribute('data-open');
   if (openKey) openModal(openKey);
@@ -298,13 +308,11 @@ document.addEventListener('click', (e) => {
 });
 
 document.addEventListener('keydown', (e) => {
-  // Enter/Space on month-card opens
   if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.month-card')) {
     const mk = e.target.closest('.month-card').getAttribute('data-month');
     e.preventDefault();
     openModal(mk);
   }
-  // ESC closes
   if (e.key === 'Escape') closeModal();
 });
 
@@ -320,16 +328,16 @@ dotsEl.addEventListener('click', (e) => {
   if (targetItem) targetItem.scrollIntoView({ behavior: 'smooth', inline: 'start' });
 });
 
-/* Sync active dot on scroll */
+/* Sync dots */
 let dotSyncRaf = null;
 carouselEl.addEventListener('scroll', () => {
   if (dotSyncRaf) return;
   dotSyncRaf = requestAnimationFrame(() => {
     const items = [...carouselEl.querySelectorAll('.carousel-item')];
     const parentRect = carouselEl.getBoundingClientRect();
-
     let bestIndex = 0;
     let bestCoverage = -Infinity;
+
     items.forEach((item, idx) => {
       const rect = item.getBoundingClientRect();
       const leftVisible = Math.max(rect.left, parentRect.left);
@@ -346,7 +354,7 @@ carouselEl.addEventListener('scroll', () => {
   });
 });
 
-/* Snap navigation */
+/* Snap nav */
 function snapTo(direction) {
   const items = [...carouselEl.querySelectorAll('.carousel-item')];
   if (!items.length) return;
@@ -372,7 +380,7 @@ function snapTo(direction) {
   items[targetIndex].scrollIntoView({ behavior: 'smooth', inline: 'start' });
 }
 
-/* Simple focus guard inside modal */
+/* Simple focus guard */
 document.addEventListener('focusin', (e) => {
   if (modalEl.getAttribute('aria-hidden') === 'true') return;
   if (!modalEl.contains(e.target)) {
