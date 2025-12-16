@@ -32,6 +32,26 @@ html, body {
   color: var(--text-muted);
 }
 
+/* Theme filter */
+.filter-bar {
+  max-width: 1100px;
+  margin: 0 auto 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.filter-bar select {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  background: #fff;
+  cursor: pointer;
+}
+
 /* Grid layout */
 .calendar {
   max-width: 1100px;
@@ -44,7 +64,7 @@ html, body {
   gap: 18px;
 }
 
-/* Month card: image on top, Qatar gradient band + button below */
+/* Month card: image on top, Qatar gradient band + CTA below */
 .month-card {
   position: relative;
   border-radius: 14px;
@@ -129,7 +149,7 @@ html, body {
   font-size: 13px;
 }
 
-/* CTA directly under the band (inside same card) */
+/* CTA directly under the band */
 .month-cta {
   margin-top: 12px;
   display: inline-flex;
@@ -153,8 +173,6 @@ html, body {
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
   background: rgba(255,255,255,0.26);
 }
-
-/* Modal, holidays, spots, carousel, footer: unchanged from previous answer */
 
 /* Modal */
 .modal { position: fixed; inset: 0; display: none; }
