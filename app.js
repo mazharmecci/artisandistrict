@@ -33,9 +33,9 @@ const months = [
     marqueeAr: "نحن نهيئ القلوب والعقول لشهر رمضان، ونحتفل بروح المجتمع والصحة والتفوق الرياضي. مطابخنا جاهزة لتغذية الأجساد والروح خلال هذا الشهر الكريم",
     marquee: "Artisan District: Preparing hearts and minds for Ramadan, we celebrate the spirit of community, wellness, and athletic excellence. Our kitchens stand ready to nourish bodies and souls during this sacred month.",
     spots: [
-      { name: "Baladna Park", note: "Baladna Park is a family-friendly destination in Qatar, offering a blend of farm life experiences, outdoor activities, and natural beauty." },
-      { name: "Baladna Farm", note: "This unique and spectacular park offers a combination of fun activities, beautiful green spaces, and the opportunity to learn about farm life." },
-      { name: "Baladna Park", note: "The park offers a variety of attractions that cater to different interests, from animal encounters to wonderful adventure activities." }
+      { name: "Baladna Park", note: "Baladna Park is a family-friendly & natural destination in Qatar." },
+      { name: "Baladna Farm", note: "This unique and spectacular park offers fun activities & beautiful green spaces." },
+      { name: "Baladna Park", note: "The park offers a variety of attractions that cater to different interests." }
     ],
     images: [
       "images/feb-Baladna-Farm-Park.jpg",
