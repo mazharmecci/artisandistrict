@@ -455,7 +455,6 @@ html, body {
 }
 
 /* Marquee divider */
-/* Marquee divider */
 .month-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--qatar-maroon), transparent);
@@ -479,10 +478,31 @@ html, body {
   color: var(--qatar-maroon);
   font-size: 12px;
   font-weight: 500;
-  animation: scroll-left 40s linear 3s infinite;
   display: inline-block;
-  white-space: nowrap;
   padding-right: 100%;
+}
+
+/* Arabic marquee - right-to-left */
+.marquee-ar {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  white-space: nowrap;
+  animation: scroll-right 40s linear 3s infinite;
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* English marquee - left-to-right (starts after Arabic finishes) */
+.marquee-en {
+  white-space: nowrap;
+  animation: scroll-left 40s linear 46s infinite;
 }
 
 @keyframes scroll-left {
@@ -494,7 +514,7 @@ html, body {
   }
 }
 
-/* Mobile: keep single line */
+/* Mobile */
 @media (max-width: 767px) {
   .month-marquee {
     min-height: 45px;
@@ -502,36 +522,22 @@ html, body {
     margin-top: 4px;
   }
 
-  .marquee-text {
+  .marquee-ar {
     font-size: 11px;
-    white-space: nowrap;
-    animation: scroll-left 40s linear 3s infinite;
-    padding-right: 100%;
+    animation: scroll-right 40s linear 3s infinite;
+  }
+
+  .marquee-en {
+    font-size: 11px;
+    animation: scroll-left 40s linear 46s infinite;
   }
 }
 
-/* Desktop: ensure marquee is below divider */
+/* Desktop */
 @media (min-width: 768px) {
   .month-marquee {
     min-height: 50px;
     margin-top: 6px;
   }
-
-  .marquee-text {
-    white-space: nowrap;
-    animation: scroll-left 40s linear 3s infinite;
-  }
 }
 
-/* Desktop: ensure marquee is below divider */
-@media (min-width: 768px) {
-  .month-marquee {
-    min-height: 50px;
-    margin-top: 6px;
-  }
-
-  .marquee-text {
-    white-space: nowrap;
-    animation: scroll-left 40s linear infinite;
-  }
-}
