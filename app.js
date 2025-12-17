@@ -128,15 +128,15 @@ const months = [
     marquee: "Artisan District: At scale, we never compromise. Our industrial catering operations blend precision, safety, and nutrition to feed hundreds with the same care we'd give to one.",
     spots: [
       { name: "Doha Corniche", note: "Long‑form visual metaphor for scale and flow." },
-      { name: "Hamad International Airport (food hubs)", note: "Subtle nod to travel catering and logistics." },
+      { name: "Lusail", note: "." },
       { name: "Lusail Stadium", note: "Signals mega‑event readiness and high‑volume service." }
     ],
     images: [
       "images/jun-corniche.jpg",
-      "images/jun-hia.jpg",
       "images/jun-lusail.jpg",
-      "images/jun-catering1.jpg",
-      "images/jun-catering2.jpg"
+      "images/jun-lusail-II.jpg",
+      "images/jun-corniche-II.jpg",
+      "images/jun-corniche-II.jpg"
     ],
     holidays: [
       { dateISO: "2026-06-26", label: "Eid al-Adha — tentative" }
