@@ -127,9 +127,9 @@ const months = [
     marqueeAr: "على نطاق واسع، نحن لا نساوم أبدًا. عمليات التموين الصناعي لدينا تجمع بين الدقة والسلامة والتغذية لتغذية المئات بنفس الرعاية التي نقدمها لشخص واحد",
     marquee: "Artisan District: At scale, we never compromise. Our industrial catering operations blend precision, safety, and nutrition to feed hundreds with the same care we'd give to one.",
     spots: [
-      { name: "Doha Corniche", note: "The Doha Corniche is a 7-kilometer (4-mile) long waterfront promenade that curves around Doha Bay." },
+      { name: "Doha Corniche", note: "The Doha Corniche long waterfront promenade that curves around Doha Bay." },
       { name: "Lusail", note: "Lusail is Qatar's modern masterpiece, blending innovation, leisure, and sustainability." },
-      { name: "Lusail", note: "It is a sought-after destination for tourism and luxury living, featuring world-class attractions." }
+      { name: "Lusail", note: "It is a sought-after featuring world-class attractions." }
     ],
     images: [
       "images/jun-corniche.jpg",
