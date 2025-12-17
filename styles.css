@@ -457,6 +457,7 @@ html, body {
   padding: 20px 16px 30px;
   color: var(--text-muted);
 }
+
 /* Marquee divider */
 .month-divider {
   height: 1px;
@@ -490,7 +491,7 @@ html, body {
   direction: rtl;
   unicode-bidi: bidi-override;
   white-space: nowrap;
-  animation: scroll-right 40s linear 3s infinite;
+  animation: scroll-right 60s linear 3s infinite;
 }
 
 @keyframes scroll-right {
@@ -505,7 +506,7 @@ html, body {
 /* English marquee - left-to-right (starts after Arabic finishes) */
 .marquee-en {
   white-space: nowrap;
-  animation: scroll-left 40s linear 46s infinite;
+  animation: scroll-left 60s linear 66s infinite;
 }
 
 @keyframes scroll-left {
@@ -527,12 +528,12 @@ html, body {
 
   .marquee-ar {
     font-size: 11px;
-    animation: scroll-right 40s linear 3s infinite;
+    animation: scroll-right 60s linear 3s infinite;
   }
 
   .marquee-en {
     font-size: 11px;
-    animation: scroll-left 40s linear 46s infinite;
+    animation: scroll-left 60s linear 66s infinite;
   }
 }
 
