@@ -106,15 +106,15 @@ const months = [
     marquee: "Artisan District: Craftsmanship meets passion in our bakery. Slow fermentation, heritage recipes, and the finest ingredients create breads and pastries that transcend ordinary moments.",
     spots: [
       { name: "Msheireb Downtown Doha", note: "Modern streetscapes that suit cafe and bakery shots." },
-      { name: "Local bakeries", note: "Close‑up artisan workbenches and ovens in Doha neighbourhoods." },
+      { name: "Msheireb Downtown Doha", note: "Modern streetscapes that suit cafe and bakery shots." },
       { name: "Gold Souq area", note: "Textures and detail for grain, spice and ingredient narratives." }
     ],
     images: [
       "images/may-msheireb.jpg",
-      "images/may-Qanat-Quartier.jpg",
-      "images/may-bakery2.jpg",
-      "images/may-bread1.jpg",
-      "images/may-bread2.jpg"
+      "images/may-msheireb-II.jpg",
+      "images/may-gold-souq-area.jpg",
+      "images/may-gold-souq-area-II.jpg",
+      "images/may-gold-souq-area-III.jpg"
     ],
     holidays: []
   },
