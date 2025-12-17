@@ -133,10 +133,10 @@ const months = [
     ],
     images: [
       "images/jun-corniche.jpg",
-      "images/jun-lusail.jpg",
+      "images/jun-lusail.jpeg",
       "images/jun-lusail-II.jpg",
       "images/jun-corniche-II.jpg",
-      "images/jun-corniche-II.jpg"
+      "images/jun-corniche-III.jpg"
     ],
     holidays: [
       { dateISO: "2026-06-26", label: "Eid al-Adha — tentative" }
