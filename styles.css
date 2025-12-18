@@ -602,6 +602,7 @@ html, body {
   gap: 0.75rem;
 }
 
+/* Container around image + calendar */
 .month-visual {
   position: relative;
   border-radius: 14px;
@@ -609,13 +610,13 @@ html, body {
   height: 210px;
 }
 
-/* Base image */
+/* Background image */
 .month-image {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: saturate(1.1);
+  filter: saturate(1.05);
   transition: opacity 260ms ease-out, transform 260ms ease-out, filter 260ms ease-out;
 }
 
@@ -628,21 +629,21 @@ html, body {
   flex-direction: column;
   opacity: 0;
   transform: translateY(8px);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(16px);
   background: linear-gradient(
     135deg,
     rgba(15, 23, 42, 0.78),
-    rgba(3, 7, 18, 0.88)
+    rgba(3, 7, 18, 0.9)
   );
   transition: opacity 260ms ease-out, transform 260ms ease-out;
 }
 
-/* Hover swap */
+/* Hover / focus swap */
 .month-card:hover .month-image,
 .month-card:focus-within .month-image {
   opacity: 0;
   transform: scale(1.03);
-  filter: grayscale(0.4) brightness(0.8);
+  filter: grayscale(0.4) brightness(0.85);
 }
 
 .month-card:hover .month-calendar,
@@ -686,8 +687,8 @@ html, body {
 .calendar-cell {
   position: relative;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  background: radial-gradient(circle at top, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95));
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 1));
   color: #e5e7eb;
   font-size: 0.7rem;
   height: 1.7rem;
@@ -696,7 +697,7 @@ html, body {
   justify-content: center;
   cursor: default;
   padding: 0;
-  transition: border-color 180ms ease, background 180ms ease, transform 120ms ease;
+  transition: border-color 160ms ease, background 160ms ease, transform 120ms ease;
 }
 
 .calendar-cell.empty {
@@ -709,9 +710,9 @@ html, body {
   z-index: 1;
 }
 
-/* Friday highlight: glowing saffron pill */
+/* Striking Fridays */
 .calendar-cell.is-friday {
-  border-color: rgba(249, 115, 22, 0.7);
+  border-color: rgba(249, 115, 22, 0.8);
   background: radial-gradient(circle at top, #f97316, #b45309);
   color: #0f172a;
   box-shadow:
@@ -719,35 +720,15 @@ html, body {
     0 0 18px rgba(249, 115, 22, 0.75);
 }
 
-/* Holidays: emerald ring on top of Friday style if overlap */
+/* Holidays: emerald halo (works on Fridays too) */
 .calendar-cell.is-holiday {
-  border-color: rgba(52, 211, 153, 0.85);
+  border-color: rgba(52, 211, 153, 0.9);
   box-shadow:
     0 0 0 1px rgba(15, 23, 42, 0.9),
-    0 0 12px rgba(52, 211, 153, 0.8);
+    0 0 14px rgba(52, 211, 153, 0.85);
 }
 
-/* Hover micro-interaction */
+/* Micro-hover */
 .calendar-cell:not(.empty):hover {
   transform: translateY(-1px);
-}
-
-/* Existing inner content tweaks to match theme */
-.month-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 0.6rem;
-}
-
-.month-name {
-  font-weight: 600;
-}
-
-.month-theme-tag {
-  font-size: 0.7rem;
-  padding: 0.2rem 0.45rem;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(148, 163, 184, 0.5);
 }
