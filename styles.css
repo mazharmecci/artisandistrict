@@ -590,24 +590,23 @@ html, body {
   }
 }
 
+/* Month card – keep base card from earlier (white card, maroon band) */
 .month-card {
   position: relative;
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
-  background: radial-gradient(circle at top, #121212, #050506);
-  color: #f9fafb;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  box-shadow: var(--shadow);
+  background: #fff;
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease;
 }
 
 /* Container around image + calendar */
 .month-visual {
   position: relative;
-  border-radius: 14px;
+  border-radius: 0; /* top corners already rounded by card */
   overflow: hidden;
-  height: 210px;
+  height: 170px;
 }
 
 /* Background image */
@@ -620,7 +619,7 @@ html, body {
   transition: opacity 260ms ease-out, transform 260ms ease-out, filter 260ms ease-out;
 }
 
-/* Calendar overlay */
+/* Calendar overlay – soft maroon glass instead of black */
 .month-calendar {
   position: absolute;
   inset: 0;
@@ -629,11 +628,11 @@ html, body {
   flex-direction: column;
   opacity: 0;
   transform: translateY(8px);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(14px);
   background: linear-gradient(
     135deg,
-    rgba(15, 23, 42, 0.78),
-    rgba(3, 7, 18, 0.9)
+    rgba(141, 23, 55, 0.28),
+    rgba(255, 255, 255, 0.90)
   );
   transition: opacity 260ms ease-out, transform 260ms ease-out;
 }
@@ -642,8 +641,8 @@ html, body {
 .month-card:hover .month-image,
 .month-card:focus-within .month-image {
   opacity: 0;
-  transform: scale(1.03);
-  filter: grayscale(0.4) brightness(0.85);
+  transform: scale(1.02);
+  filter: saturate(0.9) brightness(0.95);
 }
 
 .month-card:hover .month-calendar,
@@ -669,12 +668,12 @@ html, body {
 
 .calendar-weekday {
   text-align: center;
-  color: rgba(248, 250, 252, 0.6);
+  color: var(--text-muted);
 }
 
-/* Friday header accent */
+/* Friday header accent – maroon */
 .calendar-weekday.weekday-friday {
-  color: #f97316;
+  color: var(--qatar-maroon);
   font-weight: 600;
 }
 
@@ -687,9 +686,13 @@ html, body {
 .calendar-cell {
   position: relative;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 1));
-  color: #e5e7eb;
+  border: 1px solid rgba(141, 23, 55, 0.18);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(240, 240, 240, 0.98)
+  );
+  color: var(--text-strong);
   font-size: 0.7rem;
   height: 1.7rem;
   display: flex;
@@ -697,7 +700,12 @@ html, body {
   justify-content: center;
   cursor: default;
   padding: 0;
-  transition: border-color 160ms ease, background 160ms ease, transform 120ms ease;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    transform 120ms ease,
+    box-shadow 160ms ease;
 }
 
 .calendar-cell.empty {
@@ -710,25 +718,38 @@ html, body {
   z-index: 1;
 }
 
-/* Striking Fridays */
+/* Striking Fridays – maroon pill, white text, subtle glow */
 .calendar-cell.is-friday {
-  border-color: rgba(249, 115, 22, 0.8);
-  background: radial-gradient(circle at top, #f97316, #b45309);
-  color: #0f172a;
+  border-color: rgba(141, 23, 55, 0.9);
+  background: radial-gradient(
+    circle at top,
+    var(--qatar-maroon),
+    rgb(100, 16, 38)
+  );
+  color: var(--qatar-white);
   box-shadow:
-    0 0 0 1px rgba(15, 23, 42, 0.9),
-    0 0 18px rgba(249, 115, 22, 0.75);
+    0 0 0 1px rgba(255, 255, 255, 0.4),
+    0 0 16px rgba(141, 23, 55, 0.55);
 }
 
-/* Holidays: emerald halo (works on Fridays too) */
+/* Holidays – emerald ring, works on Fridays too */
 .calendar-cell.is-holiday {
-  border-color: rgba(52, 211, 153, 0.9);
+  border-color: rgba(16, 185, 129, 0.95);
   box-shadow:
-    0 0 0 1px rgba(15, 23, 42, 0.9),
-    0 0 14px rgba(52, 211, 153, 0.85);
+    0 0 0 1px rgba(255, 255, 255, 0.75),
+    0 0 14px rgba(16, 185, 129, 0.7);
 }
 
 /* Micro-hover */
 .calendar-cell:not(.empty):hover {
   transform: translateY(-1px);
 }
+
+/* Make sure the existing .month-inner gradient band remains on brand */
+.month-inner {
+  position: relative;
+  padding: 14px 14px 16px;
+  background: linear-gradient(90deg, var(--qatar-maroon) 0%, var(--qatar-white) 100%);
+  color: #fff;
+}
+
