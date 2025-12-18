@@ -84,20 +84,18 @@
     <small>&copy; 2026 Artisan District · Built with care in Doha, Qatar.</small>
   </footer>
 
-  <script src="app.js"></script>
-
+<script src="app.js"></script>
   <audio src="images/Journey.mp3" id="bg-music" autoplay loop muted></audio>
-
   <button id="unmuteBtn">🔊 Sound on</button>
-
-<script>
-  const audio = document.getElementById('bg-music');
-  const btn = document.getElementById('unmuteBtn');
-
-  btn.addEventListener('click', () => {
-    audio.muted = false;
-    audio.play().catch(() => {});
-  });
+  
+  <script>
+    const audio = document.getElementById('bg-music');
+    const btn = document.getElementById('unmuteBtn');
+  
+    btn.addEventListener('click', () => {
+      audio.muted = false;
+      audio.play().catch(() => {});
+    });
 </script>
 
 </body>
