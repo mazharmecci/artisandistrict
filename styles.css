@@ -548,9 +548,6 @@ html, body {
 /* Hero Banner */
 .hero-banner {
   width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
   overflow: hidden;
   background: #000;
 }
@@ -563,25 +560,7 @@ html, body {
   object-fit: cover;
 }
 
-/* Responsive hero banner */
-@media (max-width: 767px) {
-  .hero-banner {
-    margin: 0;
-    padding: 0;
-  }
-
-  .hero-banner img {
-    width: 100%;
-    height: auto;
-  }
-}
-
 @media (min-width: 768px) {
-  .hero-banner {
-    margin: 0 auto;
-    padding: 0;
-  }
-
   .hero-banner img {
     width: 100%;
     height: auto;
@@ -589,6 +568,7 @@ html, body {
     object-fit: cover;
   }
 }
+
 
 /* Month card – keep base card from earlier (white card, maroon band) */
 .month-card {
