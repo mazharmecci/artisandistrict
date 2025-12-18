@@ -83,25 +83,33 @@
   <footer class="site-footer">
     <small>&copy; 2026 Artisan District · Built with care in Doha, Qatar.</small>
   </footer>
-
+  
 <script src="app.js"></script>
-  <audio src="images/Journey.mp3" controls></audio>
-  <button id="unmuteBtn">🔊 Sound on</button>
-  
-  <script>
-    const audio = document.getElementById('bg-music');
-    const btn = document.getElementById('unmuteBtn');
-  
-    function startAudio() {
-      audio.muted = false;
-      audio.play().catch(err => {
-        console.warn('Audio play blocked or failed', err);
-      });
-    }
-  
-    btn.addEventListener('click', startAudio);
-    document.body.addEventListener('touchstart', startAudio, { once: true });
-  </script>
+<audio
+  id="bg-music"
+  src="images/Journey.mp3"
+  autoplay
+  loop
+  muted
+></audio>
+
+<button id="unmuteBtn">🔊 Sound on</button>
+
+<script>
+  const audio = document.getElementById('bg-music');
+  const btn = document.getElementById('unmuteBtn');
+
+  function startAudio() {
+    if (!audio) return;
+    audio.muted = false;
+    audio.play().catch(err => {
+      console.warn('Audio play blocked or failed', err);
+    });
+  }
+
+  btn.addEventListener('click', startAudio);
+  document.body.addEventListener('touchstart', startAudio, { once: true });
+</script>
 
 </body>
 </html>
