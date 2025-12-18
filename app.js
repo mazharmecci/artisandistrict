@@ -141,21 +141,100 @@ const months = [
     holidays: [
       { dateISO: "2026-06-26", label: "Eid al-Adha — tentative" }
     ]
-  },
-]; 
+  }
+];
 
-/* Build landing grid with marquee */
+/* Calendar helpers */
+function buildMonthMatrix(year, monthIndex) {
+  const daysInMonth = new Date(year, monthIndex + 1, 0).getDate(); // 1..n[web:36]
+  const firstDay = new Date(year, monthIndex, 1).getDay(); // 0=Sun..6=Sat[web:36]
+  const weeks = [];
+  let currentWeek = new Array(7).fill(null);
+
+  for (let i = 0; i < firstDay; i += 1) {
+    currentWeek[i] = null;
+  }
+
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const date = new Date(year, monthIndex, day);
+    const dow = date.getDay();
+    currentWeek[dow] = { day, date };
+    if (dow === 6 || day === daysInMonth) {
+      weeks.push(currentWeek);
+      currentWeek = new Array(7).fill(null);
+    }
+  }
+
+  return weeks;
+}
+
+function renderCalendarForMonth(month, year) {
+  const monthIndex = new Date(`${year}-${month.key}-01`).getMonth();
+  const matrix = buildMonthMatrix(year, monthIndex);
+  const holidaySet = new Set((month.holidays || []).map(h => h.dateISO));
+  const weekdayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  const headerRow = `
+    <div class="calendar-header-row">
+      ${weekdayLabels.map(label => `
+        <div class="calendar-weekday${label === "Fri" ? " weekday-friday" : ""}">
+          ${label}
+        </div>
+      `).join("")}
+    </div>
+  `;
+
+  const bodyRows = matrix.map((week, wi) =>
+    week.map((cell, di) => {
+      if (!cell) {
+        return `<div class="calendar-cell empty" data-pos="${wi}-${di}"></div>`;
+      }
+      const d = cell.date;
+      const isFriday = d.getDay() === 5; // Friday[web:35]
+      const dateISO = `${year}-${String(monthIndex + 1).padStart(2, "0")}-${String(cell.day).padStart(2, "0")}`;
+      const isHoliday = holidaySet.has(dateISO);
+
+      const classes = [
+        "calendar-cell",
+        isFriday ? "is-friday" : "",
+        isHoliday ? "is-holiday" : ""
+      ].filter(Boolean).join(" ");
+
+      return `
+        <button type="button" class="${classes}" data-pos="${wi}-${di}">
+          <span class="day-number">${cell.day}</span>
+        </button>
+      `;
+    }).join("")
+  ).join("");
+
+  return `
+    <div class="month-calendar">
+      ${headerRow}
+      <div class="calendar-grid">
+        ${bodyRows}
+      </div>
+    </div>
+  `;
+}
+
+/* Build landing grid with marquee + hover calendar */
 const gridEl = document.getElementById('monthsGrid');
 
 gridEl.innerHTML = months.map(m => {
   const thumbs = (m.images || []).slice(0, 5);
+  const calendarHTML = renderCalendarForMonth(m, 2026);
+
   return `
     <article class="month-card"
              data-month="${m.key}"
              data-theme="${m.theme}"
              tabindex="0"
              aria-label="${m.label}">
-      <div class="month-image" style="background-image:url('${m.cardImage}')"></div>
+      <div class="month-visual">
+        <div class="month-image" style="background-image:url('${m.cardImage}')"></div>
+        ${calendarHTML}
+      </div>
 
       <div class="month-inner">
         <header class="month-header">
@@ -175,7 +254,7 @@ gridEl.innerHTML = months.map(m => {
         </button>
       </div>
 
-            <div class="month-thumbs">
+      <div class="month-thumbs">
         ${thumbs.map((src, i) => `
           <div class="month-thumb" data-thumb-index="${i}">
             <img src="${src}" alt="${m.label} preview ${i + 1}">
@@ -189,7 +268,6 @@ gridEl.innerHTML = months.map(m => {
         ${m.marqueeAr ? `<div class="marquee-text marquee-ar">${m.marqueeAr}</div>` : ''}
         <div class="marquee-text marquee-en">${m.marquee}</div>
       </div>
-
     </article>
   `;
 }).join('');
@@ -412,9 +490,8 @@ function startThumbLoop() {
         imgEl.src = month.images[index];
         imgEl.alt = `${month.label} preview ${index + 1}`;
       });
-    }, 5000);  /* Changed from 3000 to 5000 */
+    }, 5000);
   });
 }
 
 startThumbLoop();
-
