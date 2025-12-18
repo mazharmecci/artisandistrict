@@ -167,11 +167,14 @@ function buildMonthMatrix(year, monthIndex) {
 
   return weeks;
 }
-
 function renderCalendarForMonth(month, year) {
   const monthIndex = new Date(`${year}-${month.key}-01`).getMonth();
   const matrix = buildMonthMatrix(year, monthIndex);
-  const holidaySet = new Set((month.holidays || []).map(h => h.dateISO));
+
+  const holidayMap = new Map(
+    (month.holidays || []).map(h => [h.dateISO, h.label])
+  );
+
   const weekdayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const headerRow = `
@@ -190,9 +193,10 @@ function renderCalendarForMonth(month, year) {
         return `<div class="calendar-cell empty" data-pos="${wi}-${di}"></div>`;
       }
       const d = cell.date;
-      const isFriday = d.getDay() === 5; // Friday[web:35]
+      const isFriday = d.getDay() === 5;
       const dateISO = `${year}-${String(monthIndex + 1).padStart(2, "0")}-${String(cell.day).padStart(2, "0")}`;
-      const isHoliday = holidaySet.has(dateISO);
+      const holidayLabel = holidayMap.get(dateISO);
+      const isHoliday = Boolean(holidayLabel);
 
       const classes = [
         "calendar-cell",
@@ -200,8 +204,19 @@ function renderCalendarForMonth(month, year) {
         isHoliday ? "is-holiday" : ""
       ].filter(Boolean).join(" ");
 
+      const titleText = isHoliday
+        ? `${holidayLabel} — highlighted in green as an important day`
+        : isFriday
+        ? "Friday — weekly day of rest"
+        : "";
+
       return `
-        <button type="button" class="${classes}" data-pos="${wi}-${di}">
+        <button
+          type="button"
+          class="${classes}"
+          data-pos="${wi}-${di}"
+          ${titleText ? `title="${titleText}"` : ""}
+        >
           <span class="day-number">${cell.day}</span>
         </button>
       `;
