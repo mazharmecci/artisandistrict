@@ -85,18 +85,23 @@
   </footer>
 
 <script src="app.js"></script>
-  <audio src="images/Journey.mp3" id="bg-music" autoplay loop muted></audio>
+  <audio src="images/Journey.mp3" controls></audio>
   <button id="unmuteBtn">🔊 Sound on</button>
   
   <script>
     const audio = document.getElementById('bg-music');
     const btn = document.getElementById('unmuteBtn');
   
-    btn.addEventListener('click', () => {
+    function startAudio() {
       audio.muted = false;
-      audio.play().catch(() => {});
-    });
-</script>
+      audio.play().catch(err => {
+        console.warn('Audio play blocked or failed', err);
+      });
+    }
+  
+    btn.addEventListener('click', startAudio);
+    document.body.addEventListener('touchstart', startAudio, { once: true });
+  </script>
 
 </body>
 </html>
